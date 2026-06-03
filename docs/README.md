@@ -138,7 +138,7 @@
 - [姜舒凡-联合发起者](https://github.com/Tsumugii24)（Datawhale 成员, 章节习题设计和校对）
 - [黄佩林-Datawhale意向成员](https://github.com/HeteroCat) (Agent 开发工程师, 第五章内容贡献者)
 - [曾鑫民-Agent工程师](https://github.com/fancyboi999) (牛客科技, 第十四章案例开发)
-- 胡昊-运营组织者 (Datawhale成员)
+- [胡昊-运营组织者](https://github.com/ACGpp) (Datawhale成员)
 - [朱信忠-指导专家](https://xinzhongzhu.github.io/) (Datawhale首席科学家-浙江师范大学杭州人工智能研究院教授)
 
 ### Extra-Chapter 贡献者

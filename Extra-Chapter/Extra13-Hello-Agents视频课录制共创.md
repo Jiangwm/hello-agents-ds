@@ -1,11 +1,17 @@
 # Hello-Agents 视频课录制共创
 
-Hello-Agents 正在推进配套视频课录制，希望把教程中的关键章节讲得更直观、更容易上手。目前已经有两节第四章相关课程完成录制，欢迎学习者先观看参考，也欢迎大家一起参与后续章节的视频共创。
+Hello-Agents 正在推进配套视频课录制，希望把教程中的关键章节讲得更直观、更容易上手。目前已经有多个章节和小节完成录制，欢迎学习者先观看参考，也欢迎大家一起参与后续章节的视频共创。
 
-## 已录制课程
-
-- [第4章：手把手实现 P&S 和 Reflection](https://www.xiaohongshu.com/explore/6a1ed2070000000036019d59?xsec_token=ABvPV0TAjOGgpvyySndlKfQhxzBU9g5vDdUBIqKXaH4tU=&xsec_source=pc_user)
-- [第4章：手把手实现 ReAct Agent](https://www.xiaohongshu.com/explore/6979d7ff0000000022032e0e?xsec_token=ABSY14m67mHBI0EVYKUqJkhLM6OTAqX2TpzEgsyhqXhN8=&xsec_source=pc_user)
+## 📖 视频课程录制导航
+(这里存在的都是已录制好的内容，会持续放出)
+| 章节 | 关键内容 | 视频链接 | 制作人 |
+| ---- | -------- | -------- | ------ |
+| 第四章 智能体经典范式构建 | 手把手实现 ReAct、Plan-and-Solve、Reflection | [ReAct Agent](https://www.xiaohongshu.com/explore/6979d7ff0000000022032e0e?xsec_token=ABSY14m67mHBI0EVYKUqJkhLM6OTAqX2TpzEgsyhqXhN8=&xsec_source=pc_user)<br>[P&S 和 Reflection](https://www.xiaohongshu.com/explore/6a1ed2070000000036019d59?xsec_token=ABvPV0TAjOGgpvyySndlKfQhxzBU9g5vDdUBIqKXaH4tU=&xsec_source=pc_user) | 范丽 |
+| 第五章 基于低代码平台的智能体搭建 | 了解 Coze、Dify、n8n 等低代码智能体平台使用 | 待发布 | 待补充 |
+| 第六章第五节 框架四：LangGraph | LangGraph 结构梳理与三步问答助手 | 待发布 | 待补充 |
+| 第九章 上下文工程 | 持续交互的“情境理解” | 待发布 | 待补充 |
+| 第十四章 自动化深度研究智能体 | DeepResearch Agent 复现与解析 | 待发布 | 待补充 |
+| 附录二 上下文工程补充内存 | 上下文工程中的记忆与内存机制补充 | 待发布 | 待补充 |
 
 ## 进群必读与待办事项
 
