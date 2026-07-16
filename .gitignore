@@ -162,6 +162,7 @@ cython_debug/
 .obsidian
 
 # 忽略各种文件夹下codex AGENRS.md
+.AGENTS/
 AGENTS.md
 test_*.py
 !test_tools.py
