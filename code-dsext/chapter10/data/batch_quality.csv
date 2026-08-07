@@ -1,0 +1,4 @@
+batch_id,tenant_id,line_id,product_code,produced_qty,qualified_qty,inspection_time,inspector_name
+BATCH-A-001,tenant-a,LINE-A,PROD-TEACH-A,1000,970,2026-07-29T09:10:00+08:00,教学人员甲
+BATCH-A-002,tenant-a,LINE-B,PROD-TEACH-B,800,792,2026-07-29T09:20:00+08:00,教学人员乙
+BATCH-B-001,tenant-b,LINE-B,PROD-TEACH-C,600,594,2026-07-29T09:30:00+08:00,教学人员丙

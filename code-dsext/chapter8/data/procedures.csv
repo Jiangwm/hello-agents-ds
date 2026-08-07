@@ -1,0 +1,2 @@
+document_id,title,version,effective_date,event_date,status,source_type,equipment_id,equipment_model,paragraph_id,allowed_roles,license,content
+CNC-X3-LUBE-INSPECTION-SOP,CNC-X3 润滑系统点检表,4.0,2026-07-01,,effective,authoritative,,CNC-X3,lube-check-table-row-01,equipment_engineer|maintenance_supervisor,internal-training,润滑压力低报警的表格化点检顺序：由授权人员确认安全状态后，只读核对油位、压力趋势和报警代码；任何补油、复位或试运行均须按现场规程审批。

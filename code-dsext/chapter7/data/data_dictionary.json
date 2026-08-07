@@ -1,0 +1,11 @@
+{
+  "dataset": "industrial_timeseries.csv",
+  "fields": {
+    "timestamp": {"type": "ISO-8601 datetime", "description": "采样时间"},
+    "equipment_id": {"type": "string", "description": "脱敏设备编号"},
+    "pressure_mpa": {"type": "number", "description": "过程压力，MPa"},
+    "temperature_c": {"type": "number", "description": "过程温度，C"},
+    "vibration_mm_s": {"type": "number", "description": "设备振动，mm/s"},
+    "quality_score": {"type": "number", "description": "脱敏质量评分，0-100"}
+  }
+}

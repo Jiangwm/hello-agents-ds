@@ -1,0 +1,20 @@
+{
+  "pressure_mpa": {
+    "data_type": "number",
+    "unit": "MPa",
+    "sampling_frequency": "15min",
+    "description": "泵出口压力教学测点"
+  },
+  "vibration_mm_s": {
+    "data_type": "number",
+    "unit": "mm/s",
+    "sampling_frequency": "15min",
+    "description": "泵体振动速度有效值教学测点"
+  },
+  "temperature_c": {
+    "data_type": "number",
+    "unit": "°C",
+    "sampling_frequency": "15min",
+    "description": "轴承温度教学测点"
+  }
+}

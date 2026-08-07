@@ -1,0 +1,50 @@
+[
+  {
+    "line_id": "LINE-A",
+    "planning_date": "2026-08-01",
+    "task_id": "T-HEAT",
+    "product": "PRODUCT-DEMO",
+    "batch_size": 1000,
+    "device_candidates": ["OVEN-01", "OVEN-02"],
+    "selected_device_id": "OVEN-01",
+    "due_minute": 900,
+    "duration_minutes": 120,
+    "power_kw": 90,
+    "start_minute": 600,
+    "movable": false,
+    "earliest_start_minute": 600,
+    "latest_end_minute": 720
+  },
+  {
+    "line_id": "LINE-A",
+    "planning_date": "2026-08-01",
+    "task_id": "T-MIX",
+    "product": "PRODUCT-DEMO",
+    "batch_size": 1000,
+    "device_candidates": ["MIXER-01", "MIXER-02"],
+    "selected_device_id": "MIXER-01",
+    "due_minute": 720,
+    "duration_minutes": 120,
+    "power_kw": 60,
+    "start_minute": 600,
+    "movable": true,
+    "earliest_start_minute": 0,
+    "latest_end_minute": 1440
+  },
+  {
+    "line_id": "LINE-A",
+    "planning_date": "2026-08-01",
+    "task_id": "T-PACK",
+    "product": "PRODUCT-DEMO",
+    "batch_size": 1000,
+    "device_candidates": ["PACKER-01", "PACKER-02"],
+    "selected_device_id": "PACKER-01",
+    "due_minute": 1440,
+    "duration_minutes": 120,
+    "power_kw": 40,
+    "start_minute": 720,
+    "movable": true,
+    "earliest_start_minute": 0,
+    "latest_end_minute": 1440
+  }
+]

@@ -1,0 +1,231 @@
+{
+  "ruleset_id": "TEACHING-PUMP-RULESET-v1",
+  "rules": [
+    {
+      "rule_id": "SAFE-PUMP-001",
+      "priority": "safety",
+      "trigger_features": [
+        "fire_smoke",
+        "large_leakage",
+        "personnel_injury"
+      ],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "火情、重大泄漏或人员伤害迹象",
+          "any_of": [
+            "fire_smoke",
+            "large_leakage",
+            "personnel_injury"
+          ],
+          "question": "请立即按现场应急规程上报，不要继续在线问诊。"
+        }
+      ],
+      "candidate_fault": "重大安全风险（不判断具体故障）",
+      "risk_level": "紧急",
+      "follow_up": "请立即按现场应急规程上报。",
+      "inspection_steps": [
+        "停止靠近风险区域，按现场应急规程报告中控和值班负责人。",
+        "由具备权限的现场人员依据联锁、应急和操作规程处置。",
+        "在风险解除前不执行普通故障检查建议。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-CONFLICT-001",
+      "priority": "meta",
+      "trigger_features": ["evidence_conflict"],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "多个故障规则部分命中",
+          "any_of": ["evidence_conflict"],
+          "question": "请补充最高优先候选所缺少的关键证据。"
+        }
+      ],
+      "candidate_fault": "证据冲突，暂不能确定单一候选故障",
+      "risk_level": "高",
+      "follow_up": "请补充最高优先候选所缺少的关键证据。",
+      "inspection_steps": [
+        "保留原始输入与各候选规则的已满足、未满足条件。",
+        "只补采一个能够区分候选故障的关键测点或现象。",
+        "若仍无法区分，升级设备工程师复核，不生成确定根因。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-FALLBACK-001",
+      "priority": "fallback",
+      "trigger_features": ["fallback"],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "未命中已知规则",
+          "any_of": ["fallback"],
+          "question": "请转人工并补充压力、流量、振动、温度、异响和泄漏信息。"
+        }
+      ],
+      "candidate_fault": "未命中故障规则，转人工复核",
+      "risk_level": "未知",
+      "follow_up": "请转人工并补充关键测点和现象。",
+      "inspection_steps": [
+        "保留原始输入，不用相近规则代替未知故障。",
+        "由值班人员核对设备编号、时间窗及关键测点。",
+        "升级设备工程师按正式规程复核。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-CAV-001",
+      "priority": "strong",
+      "trigger_features": [
+        "inlet_pressure_low",
+        "vibration_high",
+        "noise_abnormal",
+        "flow_fluctuating"
+      ],
+      "minimum_trigger_count": 2,
+      "necessary_conditions": [
+        {
+          "label": "入口压力偏低",
+          "any_of": ["inlet_pressure_low"],
+          "question": "请补充泵入口压力是否偏低，若有测量值请同时提供单位。"
+        },
+        {
+          "label": "噪声或振动升高",
+          "any_of": ["noise_abnormal", "vibration_high"],
+          "question": "请确认泵组是否伴随异响或振动升高。"
+        },
+        {
+          "label": "流量波动",
+          "any_of": ["flow_fluctuating"],
+          "question": "请确认流量是否存在持续波动。"
+        }
+      ],
+      "candidate_fault": "泵组汽蚀",
+      "risk_level": "高",
+      "follow_up": "请补充入口压力、噪声/振动和流量波动情况。",
+      "inspection_steps": [
+        "由现场人员在安全条件下核对入口阀位和吸入管路是否受阻。",
+        "复核入口压力与流量趋势，确认现象是否持续。",
+        "将结果交设备工程师结合工况和检修规程复核。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-BRG-001",
+      "priority": "strong",
+      "trigger_features": [
+        "bearing_temperature_high",
+        "high_frequency_vibration_high"
+      ],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "轴承温度升高",
+          "any_of": ["bearing_temperature_high"],
+          "question": "请补充轴承温度，若有测量值请同时提供单位。"
+        },
+        {
+          "label": "高频振动升高",
+          "any_of": ["high_frequency_vibration_high"],
+          "question": "请补充高频振动是否升高及其测量值。"
+        }
+      ],
+      "candidate_fault": "轴承异常",
+      "risk_level": "高",
+      "follow_up": "请同时核对轴承温度和高频振动。",
+      "inspection_steps": [
+        "由现场人员确认设备处于允许检查的安全状态。",
+        "复核轴承温度与高频振动趋势及同工况基线。",
+        "由设备工程师检查润滑、轴承间隙和近期维护记录。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-FLT-001",
+      "priority": "strong",
+      "trigger_features": [
+        "filter_dp_high",
+        "flow_decreasing",
+        "flow_low"
+      ],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "过滤器压差增大",
+          "any_of": ["filter_dp_high"],
+          "question": "请补充过滤器入口与出口压差，若有测量值请同时提供单位。"
+        },
+        {
+          "label": "流量持续下降或偏低",
+          "any_of": ["flow_decreasing", "flow_low"],
+          "question": "请确认流量是否持续下降或低于同工况基线。"
+        }
+      ],
+      "candidate_fault": "入口过滤器堵塞",
+      "risk_level": "中",
+      "follow_up": "请同时核对过滤器压差和流量趋势。",
+      "inspection_steps": [
+        "复核过滤器压差测点与流量趋势是否同一时间窗。",
+        "由现场人员按检修规程检查过滤器及吸入管路。",
+        "由设备工程师确认是否需要安排停机检修。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-SEAL-001",
+      "priority": "strong",
+      "trigger_features": [
+        "seal_leakage_abnormal",
+        "seal_chamber_temperature_high"
+      ],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "泄漏量或密封腔温度异常",
+          "any_of": [
+            "seal_leakage_abnormal",
+            "seal_chamber_temperature_high"
+          ],
+          "question": "请补充密封泄漏量或密封腔温度的测量值。"
+        }
+      ],
+      "candidate_fault": "机械密封异常",
+      "risk_level": "高",
+      "follow_up": "请补充泄漏介质、泄漏量及密封腔温度。",
+      "inspection_steps": [
+        "不要直接接触泄漏介质，按现场规定设置隔离并报告。",
+        "由授权人员核对密封泄漏量和密封腔温度趋势。",
+        "由设备工程师结合介质危害和检修规程安排复核。"
+      ]
+    },
+    {
+      "rule_id": "PUMP-WEAK-001",
+      "priority": "weak",
+      "trigger_features": [
+        "outlet_pressure_low",
+        "vibration_high",
+        "noise_abnormal",
+        "flow_decreasing",
+        "flow_low"
+      ],
+      "minimum_trigger_count": 1,
+      "necessary_conditions": [
+        {
+          "label": "至少一个泵组运行弱特征",
+          "any_of": [
+            "outlet_pressure_low",
+            "vibration_high",
+            "noise_abnormal",
+            "flow_decreasing",
+            "flow_low"
+          ],
+          "question": "请补充入口压力、流量趋势、轴承温度或高频振动中的一项关键证据。"
+        }
+      ],
+      "candidate_fault": "弱特征命中：泵组运行异常，具体原因待查",
+      "risk_level": "中",
+      "follow_up": "请补充入口压力、流量趋势、轴承温度或高频振动中的一项关键证据。",
+      "inspection_steps": [
+        "核对现象发生的设备编号、时间窗和当前工况。",
+        "补充一个可区分汽蚀、轴承异常或堵塞的关键测点。",
+        "证据仍不足时转设备工程师复核。"
+      ]
+    }
+  ]
+}

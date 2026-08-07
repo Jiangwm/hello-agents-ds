@@ -1,0 +1,129 @@
+{
+  "dataset_id": "TEACHING-PUMP-DIALOGUES-v1",
+  "cases": [
+    {
+      "case_id": "CAV-01",
+      "input": "入口压力偏低，振动升高且流量波动",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-CAV-001"]
+    },
+    {
+      "case_id": "CAV-02",
+      "input": "循环泵入口压力80 kPa，振得厉害，流量忽高忽低",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-CAV-001"]
+    },
+    {
+      "case_id": "CAV-03",
+      "input": "进口压力下降，出现异响且流量波动",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-CAV-001"]
+    },
+    {
+      "case_id": "BRG-01",
+      "input": "轴承温度 86 ℃，高频振动 8.0 mm/s",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-BRG-001"]
+    },
+    {
+      "case_id": "BRG-02",
+      "input": "轴承温度升高并伴随高频振动升高",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-BRG-001"]
+    },
+    {
+      "case_id": "FLT-01",
+      "input": "过滤器压差 60 kPa，流量持续下降",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-FLT-001"]
+    },
+    {
+      "case_id": "FLT-02",
+      "input": "过滤器压差增大，流量不足",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-FLT-001"]
+    },
+    {
+      "case_id": "SEAL-01",
+      "input": "密封泄漏量 75 mL/min",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-SEAL-001"]
+    },
+    {
+      "case_id": "SEAL-02",
+      "input": "密封腔温度升高",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-SEAL-001"]
+    },
+    {
+      "case_id": "SAFE-01",
+      "input": "泵组已经冒烟",
+      "expected_status": "safety_escalation",
+      "expected_rule_ids": ["SAFE-PUMP-001"]
+    },
+    {
+      "case_id": "SAFE-02",
+      "input": "泵组大量泄漏，入口压力偏低、振动升高且流量波动",
+      "expected_status": "safety_escalation",
+      "expected_rule_ids": ["SAFE-PUMP-001"]
+    },
+    {
+      "case_id": "ASK-01",
+      "input": "入口压力偏低，振动升高",
+      "expected_status": "needs_clarification",
+      "expected_rule_ids": ["PUMP-CAV-001"]
+    },
+    {
+      "case_id": "ASK-02",
+      "input": "轴承温度 86 ℃",
+      "expected_status": "needs_clarification",
+      "expected_rule_ids": ["PUMP-BRG-001"]
+    },
+    {
+      "case_id": "ASK-03",
+      "input": "过滤器压差 60 kPa",
+      "expected_status": "needs_clarification",
+      "expected_rule_ids": ["PUMP-FLT-001"]
+    },
+    {
+      "case_id": "CONFLICT-01",
+      "input": "入口压力偏低、振动升高，轴承温度 86 ℃",
+      "expected_status": "needs_clarification",
+      "expected_rule_ids": [
+        "PUMP-CONFLICT-001",
+        "PUMP-CAV-001",
+        "PUMP-BRG-001"
+      ]
+    },
+    {
+      "case_id": "WEAK-01",
+      "input": "出口压力下降并伴随振动升高",
+      "expected_status": "needs_clarification",
+      "expected_rule_ids": ["PUMP-WEAK-001"]
+    },
+    {
+      "case_id": "WEAK-02",
+      "input": "泵组出现异响",
+      "expected_status": "needs_clarification",
+      "expected_rule_ids": ["PUMP-WEAK-001"]
+    },
+    {
+      "case_id": "FALLBACK-01",
+      "input": "循环泵看起来不太对",
+      "expected_status": "escalated",
+      "expected_rule_ids": ["PUMP-FALLBACK-001"]
+    },
+    {
+      "case_id": "FALLBACK-02",
+      "input": "没有大量泄漏，过滤器压差没有增大，流量稳定",
+      "expected_status": "escalated",
+      "expected_rule_ids": ["PUMP-FALLBACK-001"]
+    },
+    {
+      "case_id": "MULTI-01",
+      "input": "入口压力偏低、振动升高且流量波动；过滤器压差 60 kPa，流量持续下降",
+      "expected_status": "candidate_found",
+      "expected_rule_ids": ["PUMP-CAV-001", "PUMP-FLT-001"]
+    }
+  ]
+}

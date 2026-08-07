@@ -1,0 +1,26 @@
+[
+  {
+    "query": "查找 CNC-03 主轴过热的官方检查顺序",
+    "equipment_id": "CNC-03",
+    "role": "equipment_engineer",
+    "expected_status": "answered",
+    "expected_documents": ["CNC-X3-SPINDLE-MANUAL"]
+  },
+  {
+    "query": "总结这台设备过去三个月主轴过热相似告警及已验证原因",
+    "equipment_id": "CNC-03",
+    "role": "equipment_engineer",
+    "expected_status": "answered",
+    "expected_documents": [
+      "WO-CNC03-20260718",
+      "WO-CNC03-20260609"
+    ]
+  },
+  {
+    "query": "查询火星大气的主要成分",
+    "equipment_id": "CNC-03",
+    "role": "equipment_engineer",
+    "expected_status": "refused",
+    "expected_documents": []
+  }
+]

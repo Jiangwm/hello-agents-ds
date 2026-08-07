@@ -1,0 +1,11 @@
+timestamp,batch_id,event_type,event_code,description
+2025-05-10 08:00:00,BATCH-N001,shift_change,SHIFT-DAY,白班开始
+2025-05-10 20:00:00,BATCH-N002,shift_change,SHIFT-NIGHT,夜班开始
+2025-05-11 07:55:00,BATCH-A001,material_change,MAT-L9,切换至物料批次 MAT-L9
+2025-05-11 07:57:00,BATCH-A001,recipe_version,RECIPE-R2,程序版本由 R1 切换为 R2
+2025-05-11 09:12:00,BATCH-A001,equipment_alarm,TEMP-HIGH,加热区温度高提示
+2025-05-11 19:55:00,BATCH-A002,material_change,MAT-L9,继续使用物料批次 MAT-L9
+2025-05-11 19:57:00,BATCH-A002,recipe_version,RECIPE-R2,继续使用程序版本 R2
+2025-05-11 21:10:00,BATCH-A002,equipment_alarm,TEMP-HIGH,加热区温度高提示
+2025-05-12 08:00:00,BATCH-I-N01,shift_change,SHIFT-DAY,白班开始
+2025-05-12 20:00:00,BATCH-I-A01,shift_change,SHIFT-NIGHT,夜班开始

@@ -1,0 +1,10 @@
+[
+  {"constraint_id": "C-FIX-HEAT", "task_id": "T-HEAT", "kind": "fixed", "value": 600},
+  {"constraint_id": "C-WINDOW-MIX", "task_id": "T-MIX", "kind": "window", "value": "task-window"},
+  {"constraint_id": "C-WINDOW-PACK", "task_id": "T-PACK", "kind": "window", "value": "task-window"},
+  {"constraint_id": "C-DURATION-MIX", "task_id": "T-MIX", "kind": "duration", "value": 120},
+  {"constraint_id": "C-RESOURCE-MIX", "task_id": "T-MIX", "kind": "resource", "value": "MIXER-01"},
+  {"constraint_id": "C-PRECEDENCE-HEAT", "task_id": "T-HEAT", "kind": "precedence", "value": "after", "related_task_id": "T-MIX"},
+  {"constraint_id": "C-PRECEDENCE-PACK", "task_id": "T-PACK", "kind": "precedence", "value": "after", "related_task_id": "T-HEAT"},
+  {"constraint_id": "C-PEAK", "task_id": "*", "kind": "peak_limit", "value": 180}
+]

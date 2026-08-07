@@ -1,0 +1,67 @@
+{
+  "workflow_id": "quality-daily-exception-closed-loop",
+  "workflow_version": "1.0.0",
+  "prompt_version": "quality-daily-report-v1",
+  "main_platform": "n8n",
+  "data_quality_policy": {
+    "min_target_batches": 3,
+    "min_comparison_batches": 1,
+    "max_missing_rate": 0.02,
+    "late_after": "08:00",
+    "max_late_records": 2
+  },
+  "nodes": [
+    {
+      "id": "input_validation",
+      "type": "validation",
+      "handler": "validate_inputs",
+      "platform_mapping": "n8n Code + IF",
+      "on_success": "statistics",
+      "on_failure": "message_distribution"
+    },
+    {
+      "id": "statistics",
+      "type": "deterministic_code",
+      "handler": "calculate_metrics",
+      "platform_mapping": "n8n Execute Command 或内网统计服务",
+      "on_success": "knowledge_retrieval",
+      "on_failure": "message_distribution"
+    },
+    {
+      "id": "knowledge_retrieval",
+      "type": "knowledge",
+      "handler": "retrieve_context",
+      "platform_mapping": "n8n Data Store 或私有知识库",
+      "on_success": "report_generation"
+    },
+    {
+      "id": "report_generation",
+      "type": "guarded_generation",
+      "handler": "render_metric_locked_report",
+      "platform_mapping": "n8n LLM Chain + Code",
+      "on_success": "human_approval"
+    },
+    {
+      "id": "human_approval",
+      "type": "human_in_the_loop",
+      "handler": "review_quality_workflow",
+      "platform_mapping": "n8n Wait + Form",
+      "on_approved": "message_distribution",
+      "on_rejected": "audit_archive"
+    },
+    {
+      "id": "message_distribution",
+      "type": "notification",
+      "handler": "write_approved_notification",
+      "platform_mapping": "n8n Email、Slack 或企业微信连接器",
+      "approval_required": true,
+      "on_success": "audit_archive"
+    },
+    {
+      "id": "audit_archive",
+      "type": "audit",
+      "handler": "persist_audit",
+      "platform_mapping": "n8n Data Store + 版本化对象存储"
+    }
+  ]
+}

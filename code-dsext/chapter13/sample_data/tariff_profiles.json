@@ -1,0 +1,12 @@
+[
+  {
+    "profile_id": "CN-DEMO-SUMMER",
+    "periods": [
+      {"name": "valley", "start_minute": 0, "end_minute": 420, "price_per_kwh": 0.35},
+      {"name": "flat", "start_minute": 420, "end_minute": 600, "price_per_kwh": 0.65},
+      {"name": "peak", "start_minute": 600, "end_minute": 900, "price_per_kwh": 1.2},
+      {"name": "flat", "start_minute": 900, "end_minute": 1080, "price_per_kwh": 0.65},
+      {"name": "valley", "start_minute": 1080, "end_minute": 1440, "price_per_kwh": 0.35}
+    ]
+  }
+]

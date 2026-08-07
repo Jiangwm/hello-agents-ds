@@ -1,0 +1,4 @@
+event_id,tenant_id,line_id,equipment_id,alarm_code,event_time,severity,message,acknowledged_by
+ALM-A-001,tenant-a,LINE-A,EQ-101,VIB_HIGH,2026-07-29T08:42:00+08:00,high,振动高教学告警,教学人员乙
+ALM-A-002,tenant-a,LINE-A,EQ-101,PRESSURE_DRIFT,2026-07-29T08:47:00+08:00,medium,压力漂移教学告警,教学人员甲
+ALM-B-001,tenant-b,LINE-B,EQ-301,PRESSURE_DRIFT,2026-07-29T08:10:00+08:00,low,压力漂移教学告警,教学人员丙

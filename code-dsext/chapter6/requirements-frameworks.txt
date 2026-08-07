@@ -1,0 +1,3 @@
+autogen-agentchat==0.7.4
+autogen-core==0.7.4
+langgraph==1.0.8

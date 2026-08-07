@@ -1,0 +1,46 @@
+[
+  {
+    "tenant_id": "tenant-a",
+    "line_id": "LINE-A",
+    "equipment_id": "EQ-101",
+    "equipment_name": "一号循环泵",
+    "measurements": [
+      {
+        "name": "pressure_mpa",
+        "unit": "MPa",
+        "sampling_frequency": "15min"
+      },
+      {
+        "name": "vibration_mm_s",
+        "unit": "mm/s",
+        "sampling_frequency": "15min"
+      }
+    ]
+  },
+  {
+    "tenant_id": "tenant-a",
+    "line_id": "LINE-B",
+    "equipment_id": "EQ-201",
+    "equipment_name": "二号循环泵",
+    "measurements": [
+      {
+        "name": "pressure_mpa",
+        "unit": "MPa",
+        "sampling_frequency": "15min"
+      }
+    ]
+  },
+  {
+    "tenant_id": "tenant-b",
+    "line_id": "LINE-B",
+    "equipment_id": "EQ-301",
+    "equipment_name": "教学租户乙循环泵",
+    "measurements": [
+      {
+        "name": "pressure_mpa",
+        "unit": "MPa",
+        "sampling_frequency": "15min"
+      }
+    ]
+  }
+]

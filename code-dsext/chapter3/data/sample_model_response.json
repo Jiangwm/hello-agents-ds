@@ -1,0 +1,25 @@
+{
+  "equipment": {
+    "value": "CNC-01主轴",
+    "evidence": "CNC-01主轴",
+    "certainty": "fact"
+  },
+  "phenomenon": {
+    "value": "发热",
+    "evidence": "发热",
+    "certainty": "fact"
+  },
+  "candidate_cause": {
+    "value": null,
+    "evidence": null,
+    "certainty": "unknown"
+  },
+  "action_taken": {
+    "value": "清理风道",
+    "evidence": "清理风道",
+    "certainty": "fact"
+  },
+  "uncertainties": [
+    "原文未说明故障原因"
+  ]
+}

@@ -1,0 +1,4 @@
+rule_id,alarm_code,metric,operator,threshold,unit,possible_causes,inspection_items,missing_evidence,safety_level,rule_source
+VIB-002,ALM-VIB-002,vibration_mm_s,>,7.1,mm/s,轴承磨损|紧固件松动|负载冲击,确认设备已处于安全状态|检查轴承温升与润滑|复核紧固件和模具偏载,轴承温度|近期维护记录|同工况基线,高,TEACHING-DEMO-RULESET-v1#VIB-002
+TEMP-001,ALM-TEMP-001,temperature_c,>=,75,°C,散热受阻|润滑不足,确认设备已处于安全状态|检查散热通道|复核润滑状态,环境温度|持续时长|近期维护记录,中,TEACHING-DEMO-RULESET-v1#TEMP-001
+CURRENT-003,ALM-CURRENT-003,current_a,>,35,A,机械卡阻|负载突增,确认设备已处于安全状态|检查传动机构|复核负载工况,电机铭牌参数|负载曲线|保护装置记录,高,TEACHING-DEMO-RULESET-v1#CURRENT-003

@@ -1,0 +1,5 @@
+[
+  {"task_id": "T-HEAT", "expected_power_kw": 90, "lower_power_kw": 85, "upper_power_kw": 98, "model_version": "baseline-2026.08"},
+  {"task_id": "T-MIX", "expected_power_kw": 60, "lower_power_kw": 55, "upper_power_kw": 68, "model_version": "baseline-2026.08"},
+  {"task_id": "T-PACK", "expected_power_kw": 40, "lower_power_kw": 37, "upper_power_kw": 45, "model_version": "baseline-2026.08"}
+]

@@ -1,0 +1,50 @@
+{
+  "dataset_id": "TEACHING-DEFECT-CASES-v1",
+  "cases": [
+    {
+      "case_id": "CASE-SCRATCH-001",
+      "defect_code": "SCRATCH",
+      "title": "表面划伤排查案例",
+      "owner_role": "质量工程师",
+      "verified_action": "核对输送接触面、周转器具和首件外观记录",
+      "source": "脱敏教学历史案例",
+      "limitation": "案例相似不代表本批次根因相同"
+    },
+    {
+      "case_id": "CASE-DIM-001",
+      "defect_code": "DIM",
+      "title": "尺寸超差排查案例",
+      "owner_role": "工艺工程师",
+      "verified_action": "复核量具校准、工艺采样和换型后的首件记录",
+      "source": "脱敏教学历史案例",
+      "limitation": "必须用原始测量与适用规范确认"
+    },
+    {
+      "case_id": "CASE-BURR-001",
+      "defect_code": "BURR",
+      "title": "毛刺缺陷排查案例",
+      "owner_role": "工艺工程师",
+      "verified_action": "核对刀具寿命、模具状态和去毛刺检查记录",
+      "source": "脱敏教学历史案例",
+      "limitation": "不得直接据此调整生产参数"
+    },
+    {
+      "case_id": "CASE-CONTAM-001",
+      "defect_code": "CONTAM",
+      "title": "污染异物排查案例",
+      "owner_role": "质量工程师",
+      "verified_action": "复核清洁点检、来料包装和环境检查记录",
+      "source": "脱敏教学历史案例",
+      "limitation": "需要现场和实验室证据共同确认"
+    },
+    {
+      "case_id": "CASE-STAIN-001",
+      "defect_code": "STAIN",
+      "title": "表面污渍排查案例",
+      "owner_role": "班组质量员",
+      "verified_action": "核对清洗液、手套更换和包装工序记录",
+      "source": "脱敏教学历史案例",
+      "limitation": "只作为人工检查清单"
+    }
+  ]
+}

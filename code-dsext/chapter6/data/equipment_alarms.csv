@@ -1,0 +1,3 @@
+alarm_id,timestamp,batch_id,equipment_id,alarm_code,severity,description
+AL-001,2026-07-26T13:18:00+08:00,BATCH-A001,CNC-07,SPINDLE-TEMP-HIGH,high,主轴温度超过教学报警阈值
+AL-002,2026-07-26T14:32:00+08:00,BATCH-A002,CNC-07,SPINDLE-VIBRATION-HIGH,medium,主轴轴承振动趋势升高

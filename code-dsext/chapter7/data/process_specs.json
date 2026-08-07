@@ -1,0 +1,31 @@
+{
+  "specifications": [
+    {
+      "specification_id": "SPEC-PRESSURE-001",
+      "parameter": "pressure_mpa",
+      "lower_limit": 1.0,
+      "upper_limit": 1.5,
+      "unit": "MPa",
+      "revision": "TRAINING-1",
+      "note": "脱敏教学规范，不可用于生产控制。"
+    },
+    {
+      "specification_id": "SPEC-TEMPERATURE-001",
+      "parameter": "temperature_c",
+      "lower_limit": 75.0,
+      "upper_limit": 90.0,
+      "unit": "C",
+      "revision": "TRAINING-1",
+      "note": "脱敏教学规范，不可用于生产控制。"
+    },
+    {
+      "specification_id": "SPEC-VIBRATION-001",
+      "parameter": "vibration_mm_s",
+      "lower_limit": 0.0,
+      "upper_limit": 5.0,
+      "unit": "mm/s",
+      "revision": "TRAINING-1",
+      "note": "脱敏教学规范，不可用于生产控制。"
+    }
+  ]
+}

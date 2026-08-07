@@ -1,0 +1,26 @@
+{
+  "registry_version": "1.0.0",
+  "registry_scope": "offline_desensitized_teaching_only",
+  "templates": [
+    {
+      "template_id": "pump_vibration_l1_v1",
+      "template_version": "1.0.0",
+      "answer_version": "1.0.0",
+      "status": "approved",
+      "source": {
+        "type": "synthetic_teaching_template",
+        "reference": "chapter12/pump-vibration-l1-template-v1"
+      },
+      "level": "L1",
+      "device_type": "centrifugal_pump",
+      "risk_level": "low",
+      "approved_fault_mechanisms": ["bearing_wear", "imbalance"],
+      "parameter_rules": {
+        "asset_id": {"type": "string", "allowed": ["PUMP-DEMO-01", "PUMP-DEMO-02"]},
+        "window_hours": {"type": "integer", "min": 1, "max": 24},
+        "vibration_mm_s": {"type": "number", "min": 0.1, "max": 12.0}
+      },
+      "prompt_template": "仅使用脱敏离线数据：请读取泵组 {asset_id} 最近 {window_hours} 小时的振动（{vibration_mm_s} mm/s），识别已批准故障机制并给出只读核验建议。"
+    }
+  ]
+}

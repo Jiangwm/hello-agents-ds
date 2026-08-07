@@ -1,0 +1,7 @@
+batch_id,inspected_count,passed_count,primary_defect,defect_count,measurement_name,measurement_mean
+BATCH-N001,100,98,表面划伤,2,尺寸A,10.01
+BATCH-N002,100,97,表面划伤,3,尺寸A,10.00
+BATCH-A001,100,72,表面划伤,28,尺寸A,10.08
+BATCH-A002,100,68,表面划伤,32,尺寸A,10.09
+BATCH-I-N01,20,19,尺寸超差,1,尺寸B,20.00
+BATCH-I-A01,20,15,尺寸超差,5,尺寸B,20.12

@@ -1,0 +1,72 @@
+[
+  {
+    "service_id": "analysis-line-a-primary",
+    "service_name": "A线时序分析服务",
+    "capabilities": ["timeseries_analysis"],
+    "line_ids": ["LINE-A"],
+    "tenant_ids": ["tenant-a"],
+    "data_start": "2026-07-01T00:00:00+08:00",
+    "data_end": "2026-08-01T00:00:00+08:00",
+    "algorithms": {"drift_detection": "1.2.0"},
+    "load": 0.35,
+    "timeout_ms": 800,
+    "healthy": true,
+    "traceable": true
+  },
+  {
+    "service_id": "analysis-line-a-overloaded",
+    "service_name": "A线备用时序分析服务",
+    "capabilities": ["timeseries_analysis"],
+    "line_ids": ["LINE-A"],
+    "tenant_ids": ["tenant-a"],
+    "data_start": "2026-07-01T00:00:00+08:00",
+    "data_end": "2026-08-01T00:00:00+08:00",
+    "algorithms": {"drift_detection": "1.3.0"},
+    "load": 0.92,
+    "timeout_ms": 700,
+    "healthy": true,
+    "traceable": true
+  },
+  {
+    "service_id": "analysis-line-a-unhealthy",
+    "service_name": "A线维护中时序分析服务",
+    "capabilities": ["timeseries_analysis"],
+    "line_ids": ["LINE-A"],
+    "tenant_ids": ["tenant-a"],
+    "data_start": "2026-07-01T00:00:00+08:00",
+    "data_end": "2026-08-01T00:00:00+08:00",
+    "algorithms": {"drift_detection": "1.4.0"},
+    "load": 0.1,
+    "timeout_ms": 500,
+    "healthy": false,
+    "traceable": true
+  },
+  {
+    "service_id": "analysis-line-b-tenant-a",
+    "service_name": "B线租户甲时序分析服务",
+    "capabilities": ["timeseries_analysis"],
+    "line_ids": ["LINE-B"],
+    "tenant_ids": ["tenant-a"],
+    "data_start": "2026-07-01T00:00:00+08:00",
+    "data_end": "2026-08-01T00:00:00+08:00",
+    "algorithms": {"drift_detection": "1.2.0"},
+    "load": 0.45,
+    "timeout_ms": 900,
+    "healthy": true,
+    "traceable": true
+  },
+  {
+    "service_id": "analysis-line-b-tenant-b",
+    "service_name": "B线租户乙时序分析服务",
+    "capabilities": ["timeseries_analysis"],
+    "line_ids": ["LINE-B"],
+    "tenant_ids": ["tenant-b"],
+    "data_start": "2026-07-01T00:00:00+08:00",
+    "data_end": "2026-08-01T00:00:00+08:00",
+    "algorithms": {"drift_detection": "1.2.1"},
+    "load": 0.2,
+    "timeout_ms": 600,
+    "healthy": true,
+    "traceable": true
+  }
+]

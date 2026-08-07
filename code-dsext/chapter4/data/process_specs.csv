@@ -1,0 +1,5 @@
+product_id,parameter,lower_limit,upper_limit,unit,spec_id,source
+P-100,temperature_c,175.0,185.0,°C,SPEC-P100-TEMP,TEACHING-DEMO-PROCESS-SPEC-v1
+P-100,pressure_mpa,0.55,0.65,MPa,SPEC-P100-PRESS,TEACHING-DEMO-PROCESS-SPEC-v1
+P-100,speed_m_min,19.0,21.0,m/min,SPEC-P100-SPEED,TEACHING-DEMO-PROCESS-SPEC-v1
+P-100,flow_l_min,9.5,10.5,L/min,SPEC-P100-FLOW,TEACHING-DEMO-PROCESS-SPEC-v1

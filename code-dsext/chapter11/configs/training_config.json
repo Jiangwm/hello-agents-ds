@@ -1,0 +1,84 @@
+{
+  "model": {
+    "identifier": "local:qwen3-0.6b-industrial-demo",
+    "source": "preprovisioned_local_only"
+  },
+  "lora": {
+    "enabled": true,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ]
+  },
+  "sft": {
+    "epochs": 3,
+    "batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.00005,
+    "max_sequence_length": 2048
+  },
+  "grpo": {
+    "initial_checkpoint": "planned:sft_lora",
+    "epochs": 2,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.00001,
+    "num_generations": 4,
+    "temperature": 0.8,
+    "group_size": 4,
+    "kl_coefficient": 0.1,
+    "beta": 0.1,
+    "max_output_length": 768,
+    "rollout_max_steps": 8
+  },
+  "reward_weights": {
+    "tool_selection": 0.15,
+    "parameter_accuracy": 0.15,
+    "evidence_grounding": 0.2,
+    "diagnosis_quality": 0.15,
+    "calibration": 0.1,
+    "format_compliance": 0.1,
+    "efficiency": 0.05,
+    "safety_penalty": 0.1
+  },
+  "reward_review": {
+    "status": "approved",
+    "role": "industrial_diagnosis_reward_reviewer",
+    "reviewer_id": "reward-reviewer-001",
+    "reviewed_at": "2026-06-22T09:00:00Z",
+    "rubric_version": "1.0",
+    "input_hash": "80f0ad5b485564c0fbeb6bf270458f8a439b65ce897699d4904ec67a11beb1dc"
+  },
+  "monitoring": {
+    "fixed_seed": 20260731,
+    "log_reward_components": true,
+    "kl": {
+      "enabled": true,
+      "warning_threshold": 0.2,
+      "stop_threshold": 0.35
+    },
+    "output_length": {
+      "enabled": true,
+      "warning_tokens": 640,
+      "stop_tokens": 768
+    }
+  },
+  "evaluation": {
+    "failure_threshold": 0.7,
+    "high_risk_threshold": 0.85
+  },
+  "governance": {
+    "plan_only": true,
+    "status": "pending_approval",
+    "expert_review_required": true,
+    "production_boundary": "read_only_offline",
+    "allow_model_download": false,
+    "allow_training_execution": false,
+    "offline_canary_requires_approval": true
+  }
+}

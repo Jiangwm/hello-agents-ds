@@ -1,0 +1,7 @@
+inspection_date,product_id,line_id,shift,material_code,equipment_id,program_version,temperature_c,quality_score,pass_rate
+2026-08-03,P-001,L-01,day,M-ALPHA,E-101,V1.4,82.0,98.5,0.989
+2026-08-03,P-001,L-01,night,M-BETA,E-102,V1.4,82.4,97.9,0.982
+2026-08-04,P-001,L-01,day,M-BETA,E-102,V1.4,82.1,98.4,0.988
+2026-08-04,P-001,L-01,night,M-ALPHA,E-101,V1.4,82.2,98.2,0.985
+2026-08-05,P-001,L-01,day,M-ALPHA,E-101,V1.4,81.9,98.6,0.990
+2026-08-05,P-001,L-01,night,M-BETA,E-102,V1.4,82.3,98.0,0.983

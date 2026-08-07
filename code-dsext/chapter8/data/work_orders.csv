@@ -1,0 +1,5 @@
+document_id,title,version,effective_date,event_date,status,source_type,equipment_id,equipment_model,paragraph_id,allowed_roles,license,content
+WO-CNC03-20260718,CNC-03 已关闭维修工单,1,2026-07-18,2026-07-18,effective,historical,CNC-03,CNC-X3,verified-cause,equipment_engineer|maintenance_supervisor,internal-training,CNC-03 于 2026-07-18 出现主轴过热告警；现场确认冷却滤网堵塞，清洁并经批准试运行后温度恢复，已验证原因为冷却风量不足。
+WO-CNC03-20260609,CNC-03 已关闭维修工单,1,2026-06-09,2026-06-09,effective,historical,CNC-03,CNC-X3,verified-cause,equipment_engineer|maintenance_supervisor,internal-training,CNC-03 于 2026-06-09 出现主轴过热和风机转速波动；现场确认风机接插件松动，重新固定并复核后恢复，已验证原因为冷却风机连接不良。
+WO-CNC03-20260201,CNC-03 已关闭维修工单,1,2026-02-01,2026-02-01,effective,historical,CNC-03,CNC-X3,verified-cause,equipment_engineer|maintenance_supervisor,internal-training,CNC-03 于 2026-02-01 出现主轴过热；现场确认润滑油位偏低，补充后恢复。
+WO-CNC04-20260711,CNC-04 已关闭维修工单,1,2026-07-11,2026-07-11,effective,historical,CNC-04,CNC-X3,verified-cause,equipment_engineer|maintenance_supervisor,internal-training,CNC-04 于 2026-07-11 出现主轴过热；现场确认温度传感器接线异常。

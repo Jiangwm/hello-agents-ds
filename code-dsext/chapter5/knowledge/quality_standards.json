@@ -1,0 +1,22 @@
+{
+  "dataset_id": "TEACHING-QUALITY-STANDARD-v1",
+  "effective_date": "2026-07-01",
+  "standards": [
+    {
+      "standard_id": "QS-P100-v1",
+      "product_id": "P-100",
+      "minimum_first_pass_yield": 0.95,
+      "maximum_defect_rate": 0.05,
+      "source": "脱敏教学质量标准",
+      "disposition": "越限后由质量工程师复核检验记录、设备状态和工艺窗口"
+    },
+    {
+      "standard_id": "QS-P200-v1",
+      "product_id": "P-200",
+      "minimum_first_pass_yield": 0.94,
+      "maximum_defect_rate": 0.06,
+      "source": "脱敏教学质量标准",
+      "disposition": "越限后由质量工程师复核来料、清洁记录和抽检原始证据"
+    }
+  ]
+}

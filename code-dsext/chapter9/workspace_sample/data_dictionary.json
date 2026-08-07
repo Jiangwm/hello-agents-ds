@@ -1,0 +1,17 @@
+{
+  "dataset_id": "TEACHING-QUALITY-CONTEXT-v1",
+  "data_classification": "脱敏离线教学样例",
+  "causality_notice": "本数据仅用于发现待核查的相关性，不支持因果结论或生产控制。",
+  "fields": {
+    "inspection_date": {"type": "date", "description": "检验日期（脱敏）"},
+    "product_id": {"type": "string", "description": "脱敏产品标识"},
+    "line_id": {"type": "string", "description": "脱敏产线标识"},
+    "shift": {"type": "string", "description": "班次：day 或 night"},
+    "material_code": {"type": "string", "description": "脱敏物料代码"},
+    "equipment_id": {"type": "string", "description": "脱敏设备标识"},
+    "program_version": {"type": "string", "description": "工艺程序版本"},
+    "temperature_c": {"type": "number", "description": "过程温度，摄氏度"},
+    "quality_score": {"type": "number", "description": "脱敏质量评分，0-100"},
+    "pass_rate": {"type": "number", "description": "一次合格率，0-1"}
+  }
+}

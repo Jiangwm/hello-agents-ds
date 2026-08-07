@@ -1,0 +1,10 @@
+{
+  "data_version": "CN-DEMO-2026.08-v1",
+  "source_window": "2026-07-01T00:00:00+08:00/2026-07-31T23:59:59+08:00",
+  "description": "脱敏教学样例，不对应真实工厂",
+  "interval_minutes": 30,
+  "timezone": "Asia/Shanghai",
+  "expected_meter_points": 1488,
+  "observed_meter_points": 1488,
+  "anomaly_rate": 0.0
+}
