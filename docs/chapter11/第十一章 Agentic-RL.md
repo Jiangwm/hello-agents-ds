@@ -187,7 +187,7 @@ rl_tool = RLTrainingTool()
 
 # 1. 快速测试:SFT训练(10个样本，1个epoch)
 sft_result_str = rl_tool.run({
-    "action": "train"，
+    "action": "train",
     "algorithm": "sft",
     "model_name": "Qwen/Qwen3-0.6B",
     "output_dir": "./models/quick_test_sft",
@@ -1254,7 +1254,7 @@ GRPO 有一些特定的参数需要理解和调优。
 
 <strong>优化参数</strong>:
 
-- `learning_rate`: GRPO 的学习率通常比 SFT 小，因为我们不想偏离 SFT 模型太远。建议 1e-5 到 5e-5。
+- `learning_rate`: GRPO 的学习率通常比 SFT 小，因为我们不想偏离 SFT 模型太远。建议 1e-6 到 1e-5；小模型上学习率过大（如 5e-5）可能导致策略坍塌。
 - `kl_coef`: KL 散度惩罚系数，控制策略更新的幅度。太小(0.01)可能导致策略偏离太远，太大(0.5)可能限制学习。建议 0.05-0.1。
 - `clip_range`: 策略比率裁剪范围，类似 PPO 的 epsilon。建议 0.2。
 

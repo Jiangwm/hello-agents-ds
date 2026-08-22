@@ -16,14 +16,21 @@ def create_weather_assistant():
         name="天气助手",
         llm=llm,
         system_prompt="""你是天气助手，可以查询城市天气。
-使用 get_weather 工具查询天气，支持中文城市名。
+使用 mcp_get_weather 工具查询天气，支持中文城市名。
 """
     )
 
     # 添加天气 MCP 工具
     server_script = os.path.join(os.path.dirname(__file__), "14_weather_mcp_server.py")
     weather_tool = MCPTool(server_command=["python", server_script])
-    assistant.add_tool(weather_tool)
+
+    # 显式展开并注册 MCP 子工具
+    expanded_tools = weather_tool.get_expanded_tools()
+    if not expanded_tools:
+        raise RuntimeError("未发现天气 MCP 子工具，请检查服务脚本、依赖和启动日志。")
+
+    for expanded_tool in expanded_tools:
+        assistant.add_tool(expanded_tool)
 
     return assistant
 
@@ -55,4 +62,3 @@ if __name__ == "__main__":
         demo()
     else:
         interactive()
-

@@ -66,7 +66,7 @@ class WorkingMemoryDemo:
         print("-" * 40)
         
         print("混合检索策略包括:")
-        print("• TF-IDF向量化语义检索")
+        print("• TF-IDF 向量化词法检索")
         print("• 关键词匹配检索")
         print("• 时间衰减因子")
         print("• 重要性权重调整")

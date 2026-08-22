@@ -36,25 +36,23 @@ class AgentIntegrationDemo:
         
         print("✅ MemoryTool和RAGTool初始化完成")
         
+        # 注册工具
+        print("\n2. 注册工具...")
+        self.tool_registry = ToolRegistry()
+        self.tool_registry.register_tool(self.memory_tool)
+        self.tool_registry.register_tool(self.rag_tool)
+        print("✅ 工具注册完成")
+
         # 创建Agent
-        print("\n2. 创建Agent...")
+        print("\n3. 创建Agent...")
         self.llm = HelloAgentsLLM()
         self.agent = SimpleAgent(
             name="智能学习助手",
             llm=self.llm,
-            system_prompt="集成记忆和RAG功能的智能助手"
+            system_prompt="集成记忆和RAG功能的智能助手",
+            tool_registry=self.tool_registry
         )
-        
         print("✅ Agent创建完成")
-        
-        # 注册工具
-        print("\n3. 注册工具...")
-        self.tool_registry = ToolRegistry()
-        self.tool_registry.register_tool(self.memory_tool)
-        self.tool_registry.register_tool(self.rag_tool)
-        self.agent.tool_registry = self.tool_registry
-        
-        print("✅ 工具注册完成")
         
         # 显示Agent状态
         print(f"\n📊 Agent状态:")

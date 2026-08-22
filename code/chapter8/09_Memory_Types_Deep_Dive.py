@@ -149,35 +149,35 @@ class MemoryTypesDeepDive:
         learning_session = [
             {
                 "content": "开始学习Python机器学习",
-                "context": "学习开始",
+                "context": {"stage": "学习开始"},
                 "location": "家里书房",
                 "mood": "专注",
                 "importance": 0.7
             },
             {
                 "content": "学习了线性回归的数学原理",
-                "context": "理论学习",
+                "context": {"stage": "理论学习"},
                 "chapter": "第3章",
                 "difficulty": "中等",
                 "importance": 0.8
             },
             {
                 "content": "实现了第一个线性回归模型",
-                "context": "实践编程",
+                "context": {"stage": "实践编程"},
                 "code_lines": 45,
                 "bugs_fixed": 2,
                 "importance": 0.9
             },
             {
                 "content": "完成了课后练习题",
-                "context": "练习巩固",
+                "context": {"stage": "练习巩固"},
                 "exercises_completed": 5,
                 "accuracy": 0.8,
                 "importance": 0.6
             },
             {
                 "content": "总结今天的学习收获",
-                "context": "学习总结",
+                "context": {"stage": "学习总结"},
                 "key_concepts": ["线性回归", "梯度下降", "损失函数"],
                 "importance": 0.8
             }

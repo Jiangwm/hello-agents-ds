@@ -1258,7 +1258,7 @@ GRPO has some specific parameters that need to be understood and tuned.
 
 **Optimization Parameters**:
 
-- `learning_rate`: GRPO's learning rate is usually smaller than SFT because we don't want to deviate too far from the SFT model. Recommend 1e-5 to 5e-5.
+- `learning_rate`: GRPO's learning rate is usually smaller than SFT because we don't want to deviate too far from the SFT model. Recommend 1e-6 to 1e-5; too large a learning rate (e.g., 5e-5) on small models may cause policy collapse.
 - `kl_coef`: KL divergence penalty coefficient, controls magnitude of policy updates. Too small (0.01) may cause policy to deviate too far, too large (0.5) may limit learning. Recommend 0.05-0.1.
 - `clip_range`: Policy ratio clipping range, similar to PPO's epsilon. Recommend 0.2.
 

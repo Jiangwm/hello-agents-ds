@@ -111,33 +111,34 @@ Through this approach, the agent decomposes a grand task requiring long-term pla
 
 This is a more fundamental classification dimension that explores what form the knowledge used by agents for decision-making exists in their "minds." This question is at the core of a debate that has lasted more than half a century in the field of artificial intelligence and has shaped two distinctly different AI cultures.
 
-- **Symbolic AI**
-
-Symbolism, often called traditional artificial intelligence, has a core belief: intelligence stems from logical operations on symbols. The symbols here are human-readable entities (such as words, concepts), and operations follow strict logical rules, as shown on the left side of Figure 1.4. This is like a meticulous librarian organizing world knowledge into clear rule bases and knowledge graphs.
-
-Its main advantage lies in transparency and interpretability. Since reasoning steps are explicit, its decision-making process can be fully traced, which is crucial in high-risk fields such as finance and healthcare. However, its "Achilles' heel" lies in fragility: it relies on a complete rule system, but in the real world full of ambiguity and exceptions, any new situation not covered can lead to system failure, which is the so-called "knowledge acquisition bottleneck."
-
 - **Sub-symbolic AI**
 
-Sub-symbolism, or connectionism, provides a completely different picture. Here, knowledge is not explicit rules but implicitly distributed in a complex network composed of numerous neurons, representing statistical patterns learned from massive data. Neural networks and deep learning are its representatives.
+Sub-symbolism, or connectionism, holds that knowledge does not take the form of explicit rules. Instead, it is implicitly distributed across a complex network of neurons as statistical patterns learned from massive amounts of data. Neural networks and deep learning are its representative approaches.
 
-As shown in the middle of Figure 1.4, if symbolic AI is a librarian, then sub-symbolic AI is like a babbling child. They don't learn to recognize cats by learning rules like "cats have four legs, are furry, and meow," but after seeing thousands of cat pictures, the neural network in their brain can identify the visual pattern of the concept "cat." The power of this approach lies in its pattern recognition capability and robustness to noisy data. It can easily handle unstructured data such as images and sounds, which are extremely difficult tasks for symbolic AI.
+As shown on the left side of Figure 1.4, sub-symbolic AI is like a babbling child. It does not learn to recognize cats from rules such as "cats have four legs, are furry, and meow." Instead, after seeing thousands of cat images, its neural network learns the visual patterns associated with the concept of a cat. This approach is powerful in pattern recognition and robust to noisy data. It can readily process unstructured data such as images and sounds, tasks that are often difficult for systems that rely on explicit rules.
 
 However, this powerful intuitive capability also comes with opacity. Sub-symbolic systems are typically viewed as a **Black Box**. It can identify a cat in a picture with amazing accuracy, but if you ask it "why do you think this is a cat?", it likely cannot provide a logically sound explanation. Additionally, it performs poorly on pure logical reasoning tasks and sometimes produces hallucinations that seem reasonable but are factually incorrect.
 
+- **Symbolic AI**
+
+In contrast to sub-symbolic AI, symbolism, often called traditional artificial intelligence, holds that intelligence stems from logical operations on symbols. These symbols are human-readable entities such as words and concepts, and the operations follow strict logical rules, as shown in the middle of Figure 1.4. This is like a meticulous librarian organizing world knowledge into clear rule bases and knowledge graphs.
+
+Its main advantage lies in transparency and interpretability. Since reasoning steps are explicit, its decision-making process can be fully traced, which is crucial in high-risk fields such as finance and healthcare. However, its "Achilles' heel" lies in fragility: it relies on a complete rule system, but in the real world full of ambiguity and exceptions, any new situation not covered can lead to system failure, which is the so-called "knowledge acquisition bottleneck."
+
 - **Neuro-Symbolic AI**
 
-For a long time, the two camps of symbolism and sub-symbolism developed like two parallel lines. To overcome the limitations of the above two paradigms, a "grand reconciliation" idea began to emerge, which is neuro-symbolic AI, also called neuro-symbolic hybrid. Its goal is to merge the advantages of both paradigms, creating a hybrid agent that can both learn from data like neural networks and perform logical reasoning like symbolic systems. It attempts to bridge the gap between perception and cognition, intuition and rationality. Nobel Prize-winning economist Daniel Kahneman's dual-system theory proposed in his book "Thinking, Fast and Slow" provides an excellent analogy for understanding neuro-symbolism<sup>[2]</sup>, as shown in Figure 1.4:
+For a long time, the two camps of sub-symbolism and symbolism developed like two parallel lines. To overcome the limitations of the above two paradigms, a "grand reconciliation" idea began to emerge, which is neuro-symbolic AI, also called neuro-symbolic hybrid. Its goal is to merge the advantages of both paradigms, creating a hybrid agent that can both learn from data like neural networks and perform logical reasoning like symbolic systems. In other words, it attempts to combine the pattern recognition strengths of sub-symbolic AI with the logical reasoning strengths of symbolic AI. Nobel Prize-winning economist Daniel Kahneman's dual-system theory proposed in his book "Thinking, Fast and Slow" provides an excellent analogy for understanding neuro-symbolism<sup>[2]</sup>. Following the left-to-right order in Figure 1.4, the correspondence can be summarized as follows:
 
 - **System 1** is a fast, intuitive, parallel thinking mode, similar to the powerful pattern recognition capability of sub-symbolic AI.
 - **System 2** is slow, methodical, logic-based deliberative thinking, just like the reasoning process of symbolic AI.
+- **Neuro-symbolic AI** combines the pattern recognition of System 1 with the logical reasoning of System 2, enabling the two to work together.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/1-figures/1757242319667-4.png" alt="Figure description" width="90%"/>
-  <p>Figure 1.4 Knowledge representation paradigms of symbolism, sub-symbolism, and neuro-symbolic hybrid</p>
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/1-figures/1757242319667-4.png" alt="Relationship among sub-symbolic, symbolic, and neuro-symbolic AI" width="90%"/>
+  <p>Figure 1.4 Knowledge representation paradigms of sub-symbolism, symbolism, and neuro-symbolic hybrid</p>
 </div>
 
-Human intelligence stems from the collaborative work of these two systems. Similarly, a truly robust AI also needs to combine the strengths of both. Large language model-driven agents are an excellent practical example of neuro-symbolism. Its core is a huge neural network, giving it pattern recognition and language generation capabilities. However, when it works, it generates a series of structured intermediate steps, such as thoughts, plans, or API calls, which are all explicit, operable symbols. Through this approach, it achieves a preliminary fusion of perception and cognition, intuition and rationality.
+Human intelligence stems from the collaborative work of these two systems. Similarly, a truly robust AI also needs to combine the strengths of both. Large language model-driven agents are an excellent practical example of neuro-symbolism: their core is a large neural network that provides pattern recognition and language generation capabilities; during operation, they also generate a series of structured intermediate steps, such as thoughts, plans, or API calls, which are explicit, operable symbols. In this way, they combine neural pattern recognition with symbolic logical reasoning.
 
 ## 1.2 Composition and Operating Principles of Agents
 

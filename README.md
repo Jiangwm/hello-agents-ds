@@ -179,7 +179,7 @@
 ## Star History
 
 <div align='center'>
-    <img src="./docs/images/0803-hello-agents-stats.png" alt="Datawhale" width="90%">
+    <img src="./docs/images/0818-hello-agents-stats.png" alt="Datawhale" width="90%">
 </div>
 
 <div align="center">

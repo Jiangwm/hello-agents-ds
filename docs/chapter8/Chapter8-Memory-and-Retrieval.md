@@ -229,13 +229,6 @@ from hello_agents.tools import MemoryTool, RAGTool
 # Create LLM instance
 llm = HelloAgentsLLM()
 
-# Create Agent
-agent = SimpleAgent(
-    name="Intelligent Assistant",
-    llm=llm,
-    system_prompt="You are an AI assistant with memory and knowledge retrieval capabilities"
-)
-
 # Create tool registry
 tool_registry = ToolRegistry()
 
@@ -247,8 +240,13 @@ tool_registry.register_tool(memory_tool)
 rag_tool = RAGTool(knowledge_base_path="./knowledge_base")
 tool_registry.register_tool(rag_tool)
 
-# Configure tools for Agent
-agent.tool_registry = tool_registry
+# Create Agent and configure tools
+agent = SimpleAgent(
+    name="Intelligent Assistant",
+    llm=llm,
+    system_prompt="You are an AI assistant with memory and knowledge retrieval capabilities",
+    tool_registry=tool_registry
+)
 
 # Start conversation
 response = agent.run("Hello! Please remember my name is Zhang San, I am a Python developer")
@@ -326,15 +324,16 @@ Before diving into implementation details, let's quickly experience the basic fu
 from hello_agents import SimpleAgent, HelloAgentsLLM, ToolRegistry
 from hello_agents.tools import MemoryTool
 
-# Create Agent with memory capability
+# Create LLM instance
 llm = HelloAgentsLLM()
-agent = SimpleAgent(name="Memory Assistant", llm=llm)
 
 # Create memory tool
 memory_tool = MemoryTool(user_id="user123")
 tool_registry = ToolRegistry()
 tool_registry.register_tool(memory_tool)
-agent.tool_registry = tool_registry
+
+# Create Agent with memory capability
+agent = SimpleAgent(name="Memory Assistant", llm=llm, tool_registry=tool_registry)
 
 # Experience memory features
 print("=== Adding Multiple Memories ===")
@@ -664,7 +663,7 @@ class MemoryTool(Tool):
         )
 ````
 
-MemoryManager, as the core coordinator of the memory system, is responsible for managing different types of memory modules and providing a unified operation interface.
+MemoryManager, as the core coordinator of the memory system, is responsible for managing different types of memory modules and providing a unified operation interface. The concrete storage and retrieval capabilities are implemented internally by each memory type.
 
 ````python
 class MemoryManager:
@@ -682,24 +681,22 @@ class MemoryManager:
         self.config = config or MemoryConfig()
         self.user_id = user_id
 
-        # Initialize storage and retrieval components
-        self.store = MemoryStore(self.config)
-        self.retriever = MemoryRetriever(self.store, self.config)
+        # Storage and retrieval are implemented within each memory type
 
         # Initialize various types of memory
         self.memory_types = {}
 
         if enable_working:
-            self.memory_types['working'] = WorkingMemory(self.config, self.store)
+            self.memory_types['working'] = WorkingMemory(self.config)
 
         if enable_episodic:
-            self.memory_types['episodic'] = EpisodicMemory(self.config, self.store)
+            self.memory_types['episodic'] = EpisodicMemory(self.config)
 
         if enable_semantic:
-            self.memory_types['semantic'] = SemanticMemory(self.config, self.store)
+            self.memory_types['semantic'] = SemanticMemory(self.config)
 
         if enable_perceptual:
-            self.memory_types['perceptual'] = PerceptualMemory(self.config, self.store)
+            self.memory_types['perceptual'] = PerceptualMemory(self.config)
 ````
 
 ### 8.2.5 Four Types of Memory
@@ -718,7 +715,7 @@ class WorkingMemory:
     Features:
     - Limited capacity (default 50 items) + TTL automatic cleanup
     - Pure in-memory storage, extremely fast access
-    - Hybrid retrieval: TF-IDF vectorization + keyword matching
+    - Combined lexical retrieval: TF-IDF term-weight similarity + keyword matching
     """
 
     def __init__(self, config: MemoryConfig):
@@ -737,10 +734,10 @@ class WorkingMemory:
         return memory_item.id
 
     def retrieve(self, query: str, limit: int = 5, **kwargs) -> List[MemoryItem]:
-        """Hybrid retrieval: TF-IDF vectorization + keyword matching"""
+        """Combined lexical retrieval: TF-IDF term-weight similarity + keyword matching"""
         self._expire_old_memories()
 
-        # Try TF-IDF vector retrieval
+        # Calculate TF-IDF term-weight similarity
         vector_scores = self._try_tfidf_search(query)
 
         # Calculate comprehensive score
@@ -762,7 +759,7 @@ class WorkingMemory:
         return [memory for _, memory in scored_memories[:limit]]
 ````
 
-Working memory retrieval adopts a hybrid retrieval strategy. It first attempts to use TF-IDF vectorization for semantic retrieval, and if that fails, it falls back to keyword matching. This design ensures reliable retrieval services in various environments. The scoring algorithm combines semantic similarity, time decay, and importance weight. The final score formula is: `(similarity × time decay) × (0.8 + importance × 0.4)`.
+Working memory uses a combined lexical retrieval strategy: TF-IDF represents text as sparse term vectors and calculates lexical similarity, while keyword matching provides an additional signal. When TF-IDF is unavailable or produces no effective score, the keyword score is used instead. TF-IDF vectorization is based on term frequency and inverse document frequency; it is not equivalent to semantic retrieval based on dense embeddings. The scoring algorithm combines lexical relevance, time decay, and importance weight. The final score formula is: `(relevance × time decay) × (0.8 + importance × 0.4)`.
 
 (2) Episodic Memory
 
@@ -1134,9 +1131,8 @@ Let's quickly experience the basic functions of the RAG system:
 from hello_agents import SimpleAgent, HelloAgentsLLM, ToolRegistry
 from hello_agents.tools import RAGTool
 
-# Create Agent with RAG capability
+# Create LLM instance
 llm = HelloAgentsLLM()
-agent = SimpleAgent(name="Knowledge Assistant", llm=llm)
 
 # Create RAG tool
 rag_tool = RAGTool(
@@ -1147,7 +1143,9 @@ rag_tool = RAGTool(
 
 tool_registry = ToolRegistry()
 tool_registry.register_tool(rag_tool)
-agent.tool_registry = tool_registry
+
+# Create Agent with RAG capability
+agent = SimpleAgent(name="Knowledge Assistant", llm=llm, tool_registry=tool_registry)
 
 # Experience RAG features
 # Add first knowledge
@@ -2080,4 +2078,3 @@ In the next chapter, we will continue to explore how to further improve the dial
 ## References
 
 [1] Atkinson, R. C., & Shiffrin, R. M. (1968). Human memory: A proposed system and its control processes. In *Psychology of learning and motivation* (Vol. 2, pp. 89-195). Academic press.
-

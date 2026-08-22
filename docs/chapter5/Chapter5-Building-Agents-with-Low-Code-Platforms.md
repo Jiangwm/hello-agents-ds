@@ -1103,7 +1103,7 @@ You are a 24/7 on-call, professional and efficient AI email assistant. Your task
 For the `Simple Vector Store` tool, we need to perform key configurations to ensure it can correctly "read" the knowledge we stored earlier:
 
 - **Operation Mode**: `Retrieve Documents (As Tool for AI Agent)` (read mode as a tool).
-- **Memory Key**: Must fill in the **exact same** Key as in the first part, i.e., `my_private_knowledge`.
+- **Memory Key**: Must fill in the **exact same** Key as in the first part, i.e., `my-dailytime`.
 - **Embeddings**: Must use the **exact same** `Embeddings Google Gemini` model as in the first part.
 
 Only when the `Memory Key` and `Embeddings` model are completely consistent can the Agent use the correct "key" and "language" to access the knowledge base, as shown in Figure 5.62.

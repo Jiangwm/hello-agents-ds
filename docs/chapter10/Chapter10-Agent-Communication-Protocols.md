@@ -2054,14 +2054,21 @@ def create_weather_assistant():
         name="Weather Assistant",
         llm=llm,
         system_prompt="""You are a weather assistant that can query city weather.
-Use the get_weather tool to query weather, supports Chinese city names.
+Use the mcp_get_weather tool to query weather, supports Chinese city names.
 """
     )
 
     # Add weather MCP tool
     server_script = os.path.join(os.path.dirname(__file__), "14_weather_mcp_server.py")
     weather_tool = MCPTool(server_command=["python", server_script])
-    assistant.add_tool(weather_tool)
+
+    # Explicitly expand and register MCP sub-tools
+    expanded_tools = weather_tool.get_expanded_tools()
+    if not expanded_tools:
+        raise RuntimeError("No weather MCP sub-tools were discovered. Check the server script, dependencies, and startup logs.")
+
+    for expanded_tool in expanded_tools:
+        assistant.add_tool(expanded_tool)
 
     return assistant
 
@@ -2102,7 +2109,6 @@ if __name__ == "__main__":
 ✅ Tool 'mcp_get_weather' registered.
 ✅ Tool 'mcp_list_supported_cities' registered.
 ✅ Tool 'mcp_get_server_info' registered.
-✅ MCP tool 'mcp' expanded into 3 independent tools
 
 You: I want to query Beijing's weather
 🔗 Connecting to MCP server...
@@ -2438,4 +2444,3 @@ You now have mastered the core knowledge of agent communication protocols. Keep 
 [2] The A2A Project. (2025). *A2A Protocol: An open protocol for agent-to-agent communication*. Retrieved October 7, 2025, from https://a2a-protocol.org/
 
 [3] Chang, G., Lin, E., Yuan, C., Cai, R., Chen, B., Xie, X., & Zhang, Y. (2025). *Agent Network Protocol technical white paper*. arXiv. https://doi.org/10.48550/arXiv.2508.00007
-
