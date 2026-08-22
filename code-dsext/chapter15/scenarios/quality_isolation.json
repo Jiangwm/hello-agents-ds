@@ -1,0 +1,25 @@
+{
+  "scenario_id": "quality_isolation",
+  "name": "质量隔离与交付压力",
+  "description": "脱敏批次的质量信号、隔离与在制品传播实验",
+  "data_version": "demo-2026.08-v1",
+  "deidentified": true,
+  "world": {
+    "simulation_time": 0,
+    "equipment": [
+      {"equipment_id": "EQ-PROC", "status": "running", "speed": 1.0, "health": 0.88, "power_kw": 31.0, "downtime_minutes": 0},
+      {"equipment_id": "EQ-PACK", "status": "running", "speed": 1.0, "health": 0.94, "power_kw": 22.0, "downtime_minutes": 0}
+    ],
+    "buffers": [{"buffer_id": "BUF-Q", "wip": 11, "capacity": 24, "wait_minutes": 4, "blocked_reason": "inspection"}],
+    "wip_items": [{"item_id": "WIP-Q01", "batch_id": "B-DEMO-Q", "location_id": "BUF-Q", "status": "queued"}],
+    "batches": [{"batch_id": "B-DEMO-Q", "quantity": 30, "urgent": true, "due_tick": 12, "isolated": false}],
+    "shift_teams": [{"team_id": "TEAM-Q", "available_operators": 3, "maintenance_capacity": 1}],
+    "quality_gates": [{"gate_id": "QG-Q", "status": "inspection", "defects": 1, "isolated_batch_ids": []}],
+    "energy": {"tariff": "flat", "price_per_kwh": 0.72, "current_kw": 53.0, "cumulative_kwh": 0.0, "cumulative_cost": 0.0},
+    "relationships": [
+      {"source_id": "QG-Q", "target_id": "BUF-Q", "relation": "upstream", "strength": 0.9},
+      {"source_id": "TEAM-Q", "target_id": "QG-Q", "relation": "trust", "strength": 0.86}
+    ],
+    "throughput": 0
+  }
+}

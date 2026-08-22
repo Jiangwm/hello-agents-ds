@@ -1,0 +1,25 @@
+{
+  "scenario_id": "peak_tariff_urgent_order",
+  "name": "峰值电价与紧急订单",
+  "description": "脱敏订单在峰值电价窗口中的资源冲突实验",
+  "data_version": "demo-2026.08-v1",
+  "deidentified": true,
+  "world": {
+    "simulation_time": 0,
+    "equipment": [
+      {"equipment_id": "EQ-HEAT", "status": "running", "speed": 1.0, "health": 0.9, "power_kw": 80.0, "downtime_minutes": 0},
+      {"equipment_id": "EQ-FINISH", "status": "running", "speed": 1.0, "health": 0.93, "power_kw": 34.0, "downtime_minutes": 0}
+    ],
+    "buffers": [{"buffer_id": "BUF-E", "wip": 14, "capacity": 25, "wait_minutes": 3, "blocked_reason": null}],
+    "wip_items": [{"item_id": "WIP-E01", "batch_id": "B-DEMO-URG", "location_id": "BUF-E", "status": "queued"}],
+    "batches": [{"batch_id": "B-DEMO-URG", "quantity": 50, "urgent": true, "due_tick": 8, "isolated": false}],
+    "shift_teams": [{"team_id": "TEAM-E", "available_operators": 5, "maintenance_capacity": 1}],
+    "quality_gates": [{"gate_id": "QG-E", "status": "open", "defects": 0, "isolated_batch_ids": []}],
+    "energy": {"tariff": "peak", "price_per_kwh": 1.35, "current_kw": 114.0, "cumulative_kwh": 0.0, "cumulative_cost": 0.0},
+    "relationships": [
+      {"source_id": "EQ-HEAT", "target_id": "EQ-FINISH", "relation": "shared_resource", "strength": 0.8},
+      {"source_id": "TEAM-E", "target_id": "EQ-HEAT", "relation": "trust", "strength": 0.9}
+    ],
+    "throughput": 0
+  }
+}

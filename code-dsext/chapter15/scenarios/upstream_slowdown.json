@@ -1,0 +1,25 @@
+{
+  "scenario_id": "upstream_slowdown",
+  "name": "上游降速与缓冲饥饿",
+  "description": "脱敏教学产线的上游设备降速实验",
+  "data_version": "demo-2026.08-v1",
+  "deidentified": true,
+  "world": {
+    "simulation_time": 0,
+    "equipment": [
+      {"equipment_id": "EQ-UP", "status": "running", "speed": 1.0, "health": 0.72, "power_kw": 36.0, "downtime_minutes": 0},
+      {"equipment_id": "EQ-DOWN", "status": "running", "speed": 1.0, "health": 0.91, "power_kw": 28.0, "downtime_minutes": 0}
+    ],
+    "buffers": [{"buffer_id": "BUF-01", "wip": 8, "capacity": 20, "wait_minutes": 0, "blocked_reason": null}],
+    "wip_items": [{"item_id": "WIP-001", "batch_id": "B-DEMO-01", "location_id": "BUF-01", "status": "queued"}],
+    "batches": [{"batch_id": "B-DEMO-01", "quantity": 40, "urgent": false, "due_tick": 20, "isolated": false}],
+    "shift_teams": [{"team_id": "TEAM-A", "available_operators": 4, "maintenance_capacity": 1}],
+    "quality_gates": [{"gate_id": "QG-01", "status": "open", "defects": 0, "isolated_batch_ids": []}],
+    "energy": {"tariff": "flat", "price_per_kwh": 0.72, "current_kw": 64.0, "cumulative_kwh": 0.0, "cumulative_cost": 0.0},
+    "relationships": [
+      {"source_id": "EQ-UP", "target_id": "BUF-01", "relation": "upstream", "strength": 0.95},
+      {"source_id": "TEAM-A", "target_id": "EQ-UP", "relation": "maintenance_priority", "strength": 0.7}
+    ],
+    "throughput": 0
+  }
+}

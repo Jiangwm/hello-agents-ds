@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="离线教学用多智能体数字工厂分析沙箱">
+  <title>多智能体数字工厂分析沙箱</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='56'%3E%F0%9F%8F%AD%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳至主要内容</a>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">离线教学 · 只读分析</p>
+      <h1>多智能体数字工厂分析沙箱</h1>
+    </div>
+    <div class="connection" aria-label="服务连接状态">
+      <span id="connection-dot" class="status-dot status-unknown" aria-hidden="true"></span>
+      <span id="connection-text">正在检查本地服务…</span>
+    </div>
+  </header>
+
+  <main id="main-content" class="dashboard">
+    <section class="panel controls-panel" aria-labelledby="control-title">
+      <div class="panel-heading">
+        <div>
+          <p class="section-kicker">仿真控制台</p>
+          <h2 id="control-title">场景与执行</h2>
+        </div>
+        <p id="simulation-status" class="muted" aria-live="polite">尚未初始化仿真</p>
+      </div>
+      <div class="control-grid">
+        <div class="field">
+          <label for="scenario-select">教学场景</label>
+          <select id="scenario-select" disabled aria-describedby="scenario-help">
+            <option value="">正在读取场景…</option>
+          </select>
+          <small id="scenario-help">场景列表由本地后端提供。</small>
+        </div>
+        <div class="field">
+          <label for="seed-input">随机种子</label>
+          <input id="seed-input" type="number" inputmode="numeric" value="42" step="1" aria-describedby="seed-help">
+          <small id="seed-help">相同场景、种子和策略可用于可重复教学演示。</small>
+        </div>
+        <fieldset class="strategy-field">
+          <legend>调度策略</legend>
+          <label><input type="radio" name="strategy" value="fixed_rule" checked> 固定规则</label>
+          <label><input type="radio" name="strategy" value="single_agent"> 单智能体</label>
+          <label><input type="radio" name="strategy" value="multi_agent"> 多智能体</label>
+        </fieldset>
+      </div>
+      <div class="button-row" aria-label="仿真操作">
+        <button id="initialize-button" class="button-primary" type="button">初始化</button>
+        <button id="step-button" type="button" disabled>单步</button>
+        <button id="five-steps-button" type="button" disabled>连续 5 步</button>
+        <button id="pause-button" type="button" disabled>暂停</button>
+        <button id="resume-button" type="button" disabled>恢复</button>
+        <button id="snapshot-button" type="button" disabled>快照</button>
+        <button id="replay-button" type="button" disabled>回放</button>
+        <button id="compare-button" type="button">三策略比较</button>
+      </div>
+      <div class="safety-strip" aria-label="安全边界">
+        <span>审批在环</span><span>只读分析</span><span>禁止生产控制</span>
+      </div>
+      <div id="error-message" class="error-message" role="alert" hidden></div>
+    </section>
+
+    <section class="panel topology-panel" aria-labelledby="topology-title">
+      <div class="panel-heading">
+        <div><p class="section-kicker">实时态势</p><h2 id="topology-title">产线拓扑与设备状态</h2></div>
+        <p id="current-tick" class="metric-inline">当前步：<strong>—</strong></p>
+      </div>
+      <div id="topology-view" class="topology-view empty-state" aria-live="polite">初始化后显示后端返回的产线拓扑。</div>
+      <div id="buffers-view" class="buffer-grid empty-state">暂无缓冲区 WIP 数据。</div>
+    </section>
+
+    <section class="panel summary-panel" aria-labelledby="summary-title">
+      <div class="panel-heading"><div><p class="section-kicker">业务摘要</p><h2 id="summary-title">批次、质量与能源</h2></div></div>
+      <div id="summary-view" class="summary-grid empty-state">初始化后显示后端返回的业务摘要。</div>
+    </section>
+
+    <section class="panel kpi-panel" aria-labelledby="kpi-title">
+      <div class="panel-heading"><div><p class="section-kicker">后端计算结果</p><h2 id="kpi-title">KPI</h2></div></div>
+      <dl id="kpi-view" class="kpi-grid" aria-live="polite"></dl>
+    </section>
+
+    <section class="panel messages-panel" aria-labelledby="messages-title">
+      <div class="panel-heading"><div><p class="section-kicker">协作记录</p><h2 id="messages-title">角色消息</h2></div></div>
+      <ol id="messages-view" class="message-list empty-state" aria-live="polite"><li>暂无角色消息。</li></ol>
+    </section>
+
+    <section class="panel timeline-panel" aria-labelledby="timeline-title">
+      <div class="panel-heading"><div><p class="section-kicker">可审计事件</p><h2 id="timeline-title">事件时间线</h2></div></div>
+      <ol id="events-view" class="timeline empty-state" aria-live="polite"><li>暂无事件记录。</li></ol>
+    </section>
+
+    <section class="panel comparison-panel" aria-labelledby="comparison-title">
+      <div class="panel-heading"><div><p class="section-kicker">实验对照</p><h2 id="comparison-title">三策略比较</h2></div></div>
+      <div class="table-wrap" tabindex="0">
+        <table id="comparison-table">
+          <caption>选择场景并点击“三策略比较”后显示后端计算结果。</caption>
+          <thead><tr id="comparison-head"><th scope="col">策略</th></tr></thead>
+          <tbody id="comparison-body"><tr><td>暂无比较结果。</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer>教学沙箱仅用于离线仿真与决策支持，不连接 MES、PLC 或 DCS。</footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+!backend/tests/
+!backend/tests/test_*.py
+__pycache__/
+*.pyc
+demo-output.json
