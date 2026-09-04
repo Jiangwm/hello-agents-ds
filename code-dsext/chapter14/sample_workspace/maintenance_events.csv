@@ -1,0 +1,3 @@
+tenant_id,line_id,batch_id,maintenance_id,start_at,end_at,equipment_id,action,verification_status,related_event_id
+TENANT-DEMO,LINE-A,LOT-0715-B,MT-0718-01,2026-07-18T09:00:00+08:00,2026-07-18T10:00:00+08:00,EQ-COAT-01,sensor_check,passed,EV-0718-01
+TENANT-DEMO,LINE-A,LOT-OTHER,MT-0710-01,2026-07-10T09:00:00+08:00,2026-07-10T10:00:00+08:00,EQ-COAT-02,routine_check,passed,

@@ -168,5 +168,7 @@ AGENTS.md
 test_*.py
 !test_tools.py
 .workbuddy/
+.debug-journal.md
 .vscode/
+.codex-docx-work/
 memory/

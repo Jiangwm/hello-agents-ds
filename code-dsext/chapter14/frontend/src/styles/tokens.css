@@ -1,0 +1,78 @@
+:root {
+  color-scheme: light dark;
+  --surface-canvas: #eef3f2;
+  --surface-primary: #ffffff;
+  --surface-secondary: #f5f8f7;
+  --surface-elevated: #ffffff;
+  --text-primary: #183234;
+  --text-secondary: #536b69;
+  --text-tertiary: #748987;
+  --border-default: #cbdad7;
+  --border-subtle: #e2ebe9;
+  --accent-primary: #087565;
+  --accent-hover: #075f53;
+  --accent-soft: #dcefeb;
+  --status-success: #197048;
+  --status-success-soft: #e2f2e8;
+  --status-warning: #9a6215;
+  --status-warning-soft: #fff1d6;
+  --status-error: #a43f3f;
+  --status-error-soft: #fbe9e9;
+  --status-info: #2e6575;
+  --status-info-soft: #e2f0f3;
+  --header-start: #063f47;
+  --header-end: #147567;
+  --header-text: #ffffff;
+  --header-muted: #c4e6df;
+  --focus-ring: #2db7a0;
+  --shadow-subtle: 0 1px 2px rgb(9 51 48 / 0.06);
+  --shadow-raised: 0 12px 32px rgb(9 51 48 / 0.12);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --radius-panel: 12px;
+  --radius-control: 8px;
+  --font-page: clamp(1.5rem, 3vw, 2.1rem);
+  --font-h2: 1.125rem;
+  --font-h3: 0.9375rem;
+  --font-body: 0.875rem;
+  --font-small: 0.8125rem;
+  --font-label: 0.75rem;
+  --font-metric: 1.375rem;
+  --motion-fast: 120ms;
+  --motion-standard: 220ms;
+  font-family: "Segoe UI", "Microsoft YaHei UI", system-ui, sans-serif;
+  color: var(--text-primary);
+  background: var(--surface-canvas);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-canvas: #0d1718;
+    --surface-primary: #132123;
+    --surface-secondary: #192a2c;
+    --surface-elevated: #203335;
+    --text-primary: #eef8f7;
+    --text-secondary: #acc2bf;
+    --text-tertiary: #7f9996;
+    --border-default: #365052;
+    --border-subtle: #283f41;
+    --accent-primary: #39bba4;
+    --accent-hover: #58cdb7;
+    --accent-soft: #173d39;
+    --status-success: #58c78d;
+    --status-success-soft: #18372a;
+    --status-warning: #e5ae55;
+    --status-warning-soft: #3b2e18;
+    --status-error: #ef8484;
+    --status-error-soft: #442425;
+    --status-info: #68b6ca;
+    --status-info-soft: #19353d;
+    --focus-ring: #58cdb7;
+  }
+}

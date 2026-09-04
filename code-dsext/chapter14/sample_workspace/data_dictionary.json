@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "tenant_id": "TENANT-DEMO",
+  "line_id": "LINE-A",
+  "fields": {
+    "defect_rate": "defect_count divided by units_inspected",
+    "parameter_status": "stable or drift_observed",
+    "material_lot_id": "deidentified material lot join key"
+  },
+  "safety": "offline read-only teaching fixture"
+}

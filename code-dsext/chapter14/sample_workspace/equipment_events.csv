@@ -1,0 +1,5 @@
+tenant_id,line_id,batch_id,event_id,timestamp,equipment_id,event_type,event_value,status,maintenance_id
+TENANT-DEMO,LINE-A,LOT-0715-B,EV-0715-01,2026-07-15T09:10:00+08:00,EQ-COAT-01,temperature_high,185.8,observed,
+TENANT-DEMO,LINE-A,LOT-0715-B,EV-0716-01,2026-07-16T10:20:00+08:00,EQ-COAT-01,temperature_high,186.0,observed,
+TENANT-DEMO,LINE-A,LOT-0715-B,EV-0718-01,2026-07-18T08:40:00+08:00,EQ-COAT-01,temperature_high,185.9,observed,MT-0718-01
+TENANT-DEMO,LINE-A,LOT-OTHER,EV-0720-02,2026-07-20T11:00:00+08:00,EQ-COAT-02,inspection,180.0,normal,

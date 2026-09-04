@@ -1,0 +1,3 @@
+tenant_id,line_id,batch_id,material_lot_id,received_at,supplier_code,material_grade,incoming_status
+TENANT-DEMO,LINE-A,LOT-0715-B,LOT-0715-B,2026-07-15T06:00:00+08:00,SUP-BLUE-02,COAT-X,accepted
+TENANT-DEMO,LINE-A,LOT-OTHER,LOT-OTHER,2026-07-10T06:00:00+08:00,SUP-GREEN-01,COAT-X,accepted

@@ -1,0 +1,93 @@
+{
+  "version": "1.0.0",
+  "timezone": "Asia/Shanghai",
+  "source_window": {
+    "start": "2026-07-10T00:00:00+08:00",
+    "end": "2026-07-20T23:59:59+08:00"
+  },
+  "domains": ["quality", "process", "equipment", "maintenance", "material", "documents", "external"],
+  "permission": {
+    "mode": "read-only",
+    "internal": ["quality", "process", "equipment", "maintenance", "material", "documents"],
+    "external": ["external"],
+    "cross_domain_requires_human_approval": true
+  },
+  "deidentified": true,
+  "read_only": true,
+  "production_control": "prohibited",
+  "tenant_id": "TENANT-DEMO",
+  "line_id": "LINE-A",
+  "scenarios": ["normal", "no_result", "missing_data", "conflict"],
+  "resources": [
+    {
+      "path": "data_dictionary.json",
+      "domain": "documents",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "82dee2cdbbb722df4527940b5fd3ac080110b8abeafdb6a2705ed94100a82bcd"
+    },
+    {
+      "path": "quality_batches.csv",
+      "domain": "quality",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "36c9cf64d1b1982ac6728be1f5c68d657e563e42fe517d917b565d45561e2e0b"
+    },
+    {
+      "path": "process_timeseries.csv",
+      "domain": "process",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "16080fa96e3efc3a9b4704051cb1fddc6088371db0d91aee052e884eb725865f"
+    },
+    {
+      "path": "equipment_events.csv",
+      "domain": "equipment",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "4ac905b5585744dabcf46961ce845ad73c54ff15b86bed183806c1b75d84161f"
+    },
+    {
+      "path": "maintenance_events.csv",
+      "domain": "maintenance",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "82a8dd4306b948bdadd858821b6d63f5cac4891622ce0cce9c3f91baf62689af"
+    },
+    {
+      "path": "material_lots.csv",
+      "domain": "material",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "ea55f902bbc46814293069058826748c20a4e2056ad561dd1a3e13fe5b008454"
+    },
+    {
+      "path": "documents/process_spec.md",
+      "domain": "documents",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "b33b16fa46d55293bf2091e062f916ccc5142edb69c248063d3432dfbf935cdf"
+    },
+    {
+      "path": "documents/historical_8d.md",
+      "domain": "documents",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "984425a6a09434907d90085d40498e401d70d3da18dc0bb458756eb3f29bbfe4"
+    },
+    {
+      "path": "documents/supplier_advisory.md",
+      "domain": "documents",
+      "permission": "internal",
+      "version": "1.0",
+      "sha256": "6bc6eae9e94a03c769f787b1af27275ceca4d1841048ebe603d1ba17f25ff591"
+    },
+    {
+      "path": "external_knowledge/general_mechanism.md",
+      "domain": "external",
+      "permission": "external",
+      "version": "1.0",
+      "sha256": "0b270dc273e5e1ca7185c99817c21e5f61bd0ac3bc111b8ee15f3f00b8a98bbb"
+    }
+  ]
+}

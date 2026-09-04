@@ -1,0 +1,25 @@
+{
+  "name": "helloagents-quality-deep-research-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "ky": "^1.7.5",
+    "vue": "^3.5.13",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.7",
+    "vue-tsc": "^3.0.4"
+  }
+}
