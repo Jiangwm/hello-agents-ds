@@ -8,10 +8,11 @@ import os
 import random
 from typing import List, Dict, Optional
 
+from dotenv import load_dotenv
 from agentscope.agent import ReActAgent
-from agentscope.model import DashScopeChatModel
+from agentscope.model import OpenAIChatModel
 from agentscope.pipeline import MsgHub, sequential_pipeline, fanout_pipeline
-from agentscope.formatter import DashScopeMultiAgentFormatter
+from agentscope.formatter import OpenAIMultiAgentFormatter
 
 from prompt_cn import ChinesePrompts
 from game_roles import GameRoles
@@ -32,6 +33,33 @@ from utils_cn import (
     MAX_GAME_ROUND,
     MAX_DISCUSSION_ROUND,
 )
+
+load_dotenv()
+
+
+def create_chat_model() -> OpenAIChatModel:
+    """创建 OpenAI 兼容聊天模型（智谱 GLM / 百炼 / DeepSeek 等）"""
+    model_name = os.getenv("LLM_MODEL_ID")
+    api_key = os.getenv("LLM_API_KEY")
+    base_url = os.getenv("LLM_BASE_URL")
+    if not all([model_name, api_key, base_url]):
+        raise ValueError("请在 .env 中配置 LLM_MODEL_ID、LLM_API_KEY、LLM_BASE_URL")
+
+    # glm-5.3 / glm-5.3-flash 强制思考，与平行目录 CAMEL/AutoGen 示例保持一致
+    generate_kwargs = {}
+    if "glm-5.3" in model_name.lower():
+        generate_kwargs["extra_body"] = {
+            "thinking": {"type": "enabled", "clear_thinking": False},
+            "reasoning_effort": "low",
+        }
+
+    return OpenAIChatModel(
+        model_name=model_name,
+        api_key=api_key,
+        client_args={"base_url": base_url},
+        generate_kwargs=generate_kwargs or None,
+        stream=False,
+    )
 
 
 class ThreeKingdomsWerewolfGame:
@@ -60,12 +88,8 @@ class ThreeKingdomsWerewolfGame:
         agent = ReActAgent(
             name=name,
             sys_prompt=ChinesePrompts.get_role_prompt(role, character),
-            model=DashScopeChatModel(
-                model_name="qwen-max",
-                api_key=os.environ["DASHSCOPE_API_KEY"],
-                enable_thinking=True,
-            ),
-            formatter=DashScopeMultiAgentFormatter(),
+            model=create_chat_model(),
+            formatter=OpenAIMultiAgentFormatter(),
         )
         
         # 角色身份确认
@@ -367,13 +391,15 @@ class ThreeKingdomsWerewolfGame:
 
 async def main():
     """主函数"""
-    # 检查环境变量
-    if "DASHSCOPE_API_KEY" not in os.environ:
-        print("❌ 请设置环境变量 DASHSCOPE_API_KEY")
+    required = ["LLM_MODEL_ID", "LLM_API_KEY", "LLM_BASE_URL"]
+    missing = [key for key in required if not os.getenv(key)]
+    if missing:
+        print(f"❌ 请在 .env 中配置 {', '.join(missing)}")
         return
-    
+
     print("🎮 欢迎来到三国狼人杀！")
-    
+    print(f"📡 模型：{os.getenv('LLM_MODEL_ID')} @ {os.getenv('LLM_BASE_URL')}")
+
     # 创建并运行游戏
     game = ThreeKingdomsWerewolfGame()
     await game.run_game()

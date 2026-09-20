@@ -18,11 +18,37 @@ from autogen_agentchat.conditions import TextMentionTermination
 from autogen_agentchat.ui import Console
 
 def create_openai_model_client():
-    """创建 OpenAI 模型客户端用于测试"""
+    """创建 OpenAI 兼容模型客户端（支持智谱 / 百炼 / DeepSeek 等）"""
+    model = os.getenv("LLM_MODEL_ID")
+    api_key = os.getenv("LLM_API_KEY")
+    base_url = os.getenv("LLM_BASE_URL")
+    if not all([model, api_key, base_url]):
+        raise ValueError("请在 .env 中配置 LLM_MODEL_ID、LLM_API_KEY、LLM_BASE_URL")
+
+    # 非官方 OpenAI 模型名必须提供 model_info，否则会报：
+    # model_info is required when model name is not a valid OpenAI model
+    model_info = {
+        "vision": False,
+        "function_calling": True,
+        "json_output": True,
+        "family": "unknown",
+        "structured_output": True,
+    }
+
+    # glm-5.3 / glm-5.3-flash 强制思考，不能传 disabled
+    extra_create_args = {}
+    if "glm-5.3" in model.lower():
+        extra_create_args["extra_body"] = {
+            "thinking": {"type": "enabled", "clear_thinking": False},
+            "reasoning_effort": "low",
+        }
+
     return OpenAIChatCompletionClient(
-        model=os.getenv("LLM_MODEL_ID", "gpt-4o"),
-        api_key=os.getenv("LLM_API_KEY"),
-        base_url=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1")
+        model=model,
+        api_key=api_key,
+        base_url=base_url,
+        model_info=model_info,
+        **extra_create_args,
     )
 
 def create_product_manager(model_client):

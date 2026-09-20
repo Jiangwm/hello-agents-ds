@@ -7,7 +7,7 @@
 
 import asyncio
 from typing import TypedDict, Annotated
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_core.messages import HumanMessage, AIMessage
 from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
@@ -30,14 +30,19 @@ class SearchState(TypedDict):
 
 # 初始化模型和Tavily客户端
 llm = ChatOpenAI(
-    model=os.getenv("LLM_MODEL_ID", "gpt-4o-mini"),
+    model=os.getenv("LLM_MODEL_ID", "gpt-4o-mini"),     
     api_key=os.getenv("LLM_API_KEY"),
-    base_url=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
+    base_url=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"), 
     temperature=0.7
 )
 
 # 初始化Tavily客户端
 tavily_client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+
+def invoke_llm(prompt: str) -> str:
+    """调用 LLM。国内兼容 OpenAI 的接口通常要求必须有 user 消息，不能只发 system。"""
+    response = llm.invoke([HumanMessage(content=prompt)])
+    return response.content
 
 def understand_query_node(state: SearchState) -> SearchState:
     """步骤1：理解用户查询并生成搜索关键词"""
@@ -59,10 +64,7 @@ def understand_query_node(state: SearchState) -> SearchState:
 理解：[用户需求总结]
 搜索词：[最佳搜索关键词]"""
 
-    response = llm.invoke([SystemMessage(content=understand_prompt)])
-    
-    # 提取搜索关键词
-    response_text = response.content
+    response_text = invoke_llm(understand_prompt)
     search_query = user_message  # 默认使用原始查询
     
     if "搜索词：" in response_text:
@@ -71,10 +73,10 @@ def understand_query_node(state: SearchState) -> SearchState:
         search_query = response_text.split("搜索关键词：")[1].strip()
     
     return {
-        "user_query": response.content,
+        "user_query": response_text,
         "search_query": search_query,
         "step": "understood",
-        "messages": [AIMessage(content=f"我理解您的需求：{response.content}")]
+        "messages": [AIMessage(content=f"我理解您的需求：{response_text}")]
     }
 
 def tavily_search_node(state: SearchState) -> SearchState:
@@ -141,12 +143,12 @@ def generate_answer_node(state: SearchState) -> SearchState:
 
 请提供一个有用的回答，并说明这是基于已有知识的回答。"""
         
-        response = llm.invoke([SystemMessage(content=fallback_prompt)])
+        response_text = invoke_llm(fallback_prompt)
         
         return {
-            "final_answer": response.content,
+            "final_answer": response_text,
             "step": "completed",
-            "messages": [AIMessage(content=response.content)]
+            "messages": [AIMessage(content=response_text)]
         }
     
     # 基于搜索结果生成答案
@@ -164,12 +166,12 @@ def generate_answer_node(state: SearchState) -> SearchState:
 4. 回答要结构清晰、易于理解
 5. 如果搜索结果不够完整，请说明并提供补充建议"""
 
-    response = llm.invoke([SystemMessage(content=answer_prompt)])
+    response_text = invoke_llm(answer_prompt)
     
     return {
-        "final_answer": response.content,
+        "final_answer": response_text,
         "step": "completed",
-        "messages": [AIMessage(content=response.content)]
+        "messages": [AIMessage(content=response_text)]
     }
 
 # 构建搜索工作流

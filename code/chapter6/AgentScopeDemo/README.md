@@ -24,27 +24,21 @@
 ### 1. 安装依赖
 
 ```bash
-pip install agentscope
-pip install dashscope
-pip install pydantic
+pip install -r requirements.txt
 ```
 
 ### 2. 配置环境变量
 
-设置阿里云 DashScope API Key：
+与第六章其他示例一致，使用 OpenAI 兼容 MaaS（智谱 GLM / 百炼 / DeepSeek 等）。
+在本目录或上级目录创建 `.env`：
 
 ```bash
-# Linux/Mac
-export DASHSCOPE_API_KEY="your-api-key-here"
-
-# Windows PowerShell
-$env:DASHSCOPE_API_KEY="your-api-key-here"
-
-# Windows CMD
-set DASHSCOPE_API_KEY=your-api-key-here
+LLM_MODEL_ID=glm-5.3-flash
+LLM_API_KEY=your-api-key-here
+LLM_BASE_URL=https://open.bigmodel.cn/api/paas/v4/
 ```
 
-获取 API Key：https://dashscope.console.aliyun.com/apiKey
+也可直接导出同名环境变量。智谱控制台：https://open.bigmodel.cn/
 
 ### 3. 运行游戏
 
@@ -163,8 +157,8 @@ def get_role_prompt(role: str, character: str) -> str:
 
 ### Q: 游戏无法启动？
 A: 检查以下几点：
-- 确认 DASHSCOPE_API_KEY 环境变量已设置
-- 验证 API Key 是否有效
+- 确认 `.env` 中已配置 `LLM_MODEL_ID`、`LLM_API_KEY`、`LLM_BASE_URL`
+- 验证 API Key 与 Base URL 是否匹配当前厂商
 - 检查网络连接是否正常
 
 ### Q: 智能体输出格式错误？
