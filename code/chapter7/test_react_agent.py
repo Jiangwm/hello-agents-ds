@@ -98,10 +98,14 @@ def test_custom_prompt():
     llm = HelloAgentsLLM()
     tool_registry = ToolRegistry()
     
-    # 注册计算器工具
+    # 注册计算器工具（1.0：register_function(func, name=..., description=...)）
     try:
         from hello_agents import calculate
-        tool_registry.register_function("calculate", calculate, "数学计算工具")
+        tool_registry.register_function(
+            calculate,
+            name="calculate",
+            description="数学计算工具",
+        )
     except ImportError:
         pass
     
