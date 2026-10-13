@@ -51,7 +51,7 @@ Currently, the low-code platform market for agents and LLM applications presents
 
 In the following subsections, we will get hands-on experience with these platforms one by one, and more intuitively feel their respective charms through actual operations.
 
-## 5.2 Platform One: Coze
+## 5.2 Platform One: Coze（[coze.cn](https://www.coze.cn/home)）
 Coze is a super cool AI agent creation tool! It is also currently the most widely used agent platform on the market. With its intuitive visual interface and rich functional modules, the platform allows users to easily create various types of agent applications, such as chatbots that can chat with you, creative machines that automatically write stories, and even directly help you turn stories into movie MVs! One of its highlights is its powerful ecosystem integration capability. Developed agents can be published to mainstream platforms such as WeChat, Feishu, and Doubao with one click, achieving seamless cross-platform deployment. For enterprise users, Coze also provides flexible API interfaces, supporting the integration of agent capabilities into existing business systems, achieving "building block-style" AI application construction.
 ### 5.2.1 Functional Modules of Coze
 (1) Platform Interface Overview
@@ -100,39 +100,59 @@ If I were to make a simple summary of Coze's agent development, I would compare 
 
 
 
+### 5.2.2 Building the “Daily AI Briefing” Assistant
 
-### 5.2.2 Building a "Daily AI Brief" Assistant
+<strong>Case Description:</strong> This hands-on case aims to provide an in-depth analysis of the plugin integration capabilities of the Coze platform and guide readers in building a powerful “Daily AI Briefing” agent from scratch. The agent can automatically retrieve the latest AI headlines, academic papers, and open-source project updates of the day from multiple information sources (including 36Kr, Huxiu, ITHome, InfoQ, GitHub, and arXiv), and then integrate them into a vivid, concise briefing in a structured and professional manner.
 
-**Case Description:** This practical case aims to deeply analyze Coze platform's plugin integration capabilities and guide readers to build a powerful "Daily AI Brief" agent from scratch. This agent can automatically capture the latest AI field headlines, academic papers, and open-source project updates from multiple information sources (including 36Kr, Huxiu, IT Home, InfoQ, GitHub, arXiv) and integrate them into a vivid and concise brief in a structured and professional manner.
+Through this case, you will systematically master the following core skills：
 
-Through this case, you will systematically master the following core skills:
+* <strong>Multi-source information aggregation:</strong> Use Coze’s plugin ecosystem to achieve seamless integration of data flows across platforms and data types.
+* <strong>Agent behavior definition:</strong> Precisely control task execution and content generation through role settings and prompt engineering, ensuring that outputs meet predefined professional standards.
+* <strong>Automated workflow construction:</strong> Learn how to connect multiple steps, such as data acquisition, content processing, and formatted output, into an efficient automated workflow.
 
-  * **Multi-source Information Aggregation:** Use Coze's plugin ecosystem to achieve seamless integration of cross-platform, cross-type data flows.
-  * **Agent Behavior Definition:** Through role setting and prompt engineering, precisely control the agent's task execution and content generation to ensure output meets preset professional standards.
-  * **Automated Workflow Construction:** Learn how to link multiple steps such as data acquisition, content processing, and formatted output into an efficient, automated workflow.
+<strong>Note：Coze Platform Entry Update</strong>
 
+As the Coze platform continues to be updated, the page entry points in the current version have changed compared with those available when this tutorial was written.
 
+When visiting the [Coze China official website](https://www.coze.cn/home), the page may automatically redirect to the new homepage（https://www.coze.cn/）. In the new interface, you can enter the old workspace through the following entry point and continue building agents, as shown in Figure 5.6.
 
-**Step 1: Add and Configure Information Source Plugins**
-
-The primary task of building a "Daily AI Brief" agent is to connect it to rich and authoritative information sources. On the Coze platform, this is achieved by adding and configuring corresponding plugins.
-
-1.  **Plugin Integration:** In Coze's plugin library, search for and add the required plugins. For example, subscribe to RSS feeds from media platforms through the **RSS** plugin (as shown in Figure 5.6), track open-source projects through the **GitHub** plugin (as shown in Figure 5.7), and obtain the latest academic research results through the **arXiv** plugin (as shown in Figure 5.8).
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-06.png" alt="Image description" width="90%"/>
-  <p>Figure 5.6 RSS Source Plugin for Media Platforms</p>
-</div>
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-07.png" alt="Image description" width="90%"/>
-  <p>Figure 5.7 GitHub Plugin</p>
-</div>
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-08.png" alt="Image description" width="90%"/>
-  <p>Figure 5.8 Arxiv Plugin</p>
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-06.jpg" alt="Entry from the new Coze homepage to the old workspace" width="90%"/> 
+  <p>Figure 5.6 Entry from the new Coze homepage to the old workspace</p>
 </div>
 
-2.  **Personalized Configuration:** Perform fine-grained configuration for each plugin to ensure it can accurately obtain the required data. For example, in the RSS plugin, enter specific RSS subscription links for websites like 36Kr and Huxiu; in the GitHub plugin, set keyword query quantities and latest update settings to be monitored; in the arXiv plugin, define keywords of interest such as "LLM," "AI," etc., and define quantities and latest update settings.
+If no similar entry point is displayed on the page, you can also directly visit [https://www.coze.cn/space/](https://www.coze.cn/space/) to enter the workspace and create an agent.
+
+<strong>Step 1：Create a Workflow</strong>
+
+On the resource library interface, select `+Resources`——`Workflow` to create a workflow, as shown in Figure 5.7.
+
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-07.png" alt="Create workflow page" width="90%"/> 
+  <p>Figure 5.7 Create workflow page</p> 
+</div>
+
+<strong>Step 2：Add and Configure Information Source Plugins</strong>
+
+The first task in building the “Daily AI Briefing” agent is to connect it to rich and authoritative information sources. On the Coze platform, this is achieved by adding and configuring the corresponding plugins.
+
+1. <strong>Plugin integration:</strong> In Coze’s plugin library, search for and add the required plugins. For example, use the <strong>RSS</strong> plugin to subscribe to RSS feeds from media platforms (as shown in Figure 5.8), use the <strong>GitHub</strong> plugin to track open-source projects (as shown in Figure 5.9), and use the <strong>arXiv</strong> plugin to obtain the latest academic research results (as shown in Figure 5.10).
+
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-08.png" alt="Media platform RSS feed plugin" width="90%"/> 
+  <p>Figure 5.8 RSS feed plugin for media platforms</p> 
+</div>
+
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-09.png" alt="GitHub plugin" width="90%"/> 
+  <p>Figure 5.9 GitHub plugin</p> 
+</div>
+
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-10.png" alt="Arxiv plugin" width="90%"/> 
+  <p>Figure 5.10 Arxiv plugin</p> 
+</div>
+2. <strong>Personalized configuration:</strong> Fine-tune each plugin to ensure that it can accurately obtain the required data. For example, in the RSS plugin, enter specific RSS subscription links for websites such as 36Kr and Huxiu; in the GitHub plugin, set the keywords to monitor, the number of query results, and the latest-update settings; in the arXiv plugin, define keywords for fields of interest, such as “LLM” and “AI,” as well as the number of results and the latest-update settings.
 
 ```
 RSS Link Configuration
@@ -155,20 +175,29 @@ Arxiv Plugin Configuration
 - sort_by: 2
 ```
 
-3.  **Orchestration and Connection:** In the agent's visual orchestration interface, use these configured information source plugins (such as `rss_24Hbj`, `searchRepository`, `arxiv`, etc.) as data input nodes and connect them to subsequent logical processing modules (such as the **Large Model** module) to build a complete data processing path, as shown in Figure 5.9.
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-09.png" alt="Image description" width="90%"/>
-  <p>Figure 5.9 Daily AI Brief Orchestration Flowchart</p>
+
+
+3. <strong>Orchestration connections:</strong> In the agent’s visual orchestration interface, use these configured information source plugins (for example, `rss_24Hbj`, `searchRepository`, `arxiv`, etc.) as data input nodes and connect them to subsequent logic processing modules (for example, the <strong>large model</strong> module) to build a complete data processing path, as shown in Figure 5.11.
+
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-11.png" alt="Daily AI Briefing orchestration flowchart" width="90%"/> 
+  <p>Figure 5.11 Daily AI Briefing orchestration flowchart</p> 
 </div>
 
+<strong>Step 3：Set the Agent Role and Prompts(Character Persona and Response Logic)</strong>
 
-**Step 2: Set Agent Role and Prompts**
+Role setting and prompt writing are the core steps for defining agent behavior and output quality. This step aims to transform abstract instructions into specific tasks that the agent can understand and execute.
 
-Role setting and prompt writing are the core steps in defining agent behavior and output quality. This step aims to transform abstract instructions into specific tasks that the agent can understand and execute.
+On the Coze platform, you can define the agent’s behavioral logic by configuring the system prompt（System Prompt）and user prompt（User Prompt）, as shown in Figure 5.12.
 
-(1) Role Setting
+<div align="center"> 
+  <img src="ttps://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-12.png" alt="Prompt configuration page" width="90%"/> 
+  <p>Figure 5.12 Prompt configuration page</p> 
+</div>
 
-We set the agent as a **senior and authoritative technology media editor**. This role gives the agent a clear professional positioning, enabling it to imitate the thinking mode of professional editors in subsequent content creation, performing efficient information screening, integration, and summarization.
+1）Role Setting
+
+We set the agent as a <strong>senior and authoritative technology media editor</strong>. This role gives the agent a clear professional positioning, enabling it to emulate the thinking patterns of a professional editor in subsequent content creation and efficiently filter, integrate, and summarize information.
 
 (2) Prompt Writing and Structuring
 
@@ -207,11 +236,11 @@ The user prompt is used to define specific task instructions and data sources.
 
 
 
-**Step 3: Testing, Debugging, and Multi-Channel Publishing**
+<strong>Step 4：Testing, Debugging, and Multi-channel Publishing</strong>
 
-After completing the core logic construction of the agent, rigorous testing and debugging must be performed to ensure its output meets expectations.
+After completing the construction of the agent’s core logic, rigorous testing and debugging must be performed to ensure that its output meets expectations.
 
-**Run Preview:** Run the agent in Coze platform's preview interface and observe the brief content it generates.
+<strong>Run preview:</strong> Run the agent in the Coze platform’s preview interface and observe the briefing content it generates.
 
 ```
 # AI Daily Report by@jasonhuang 2025-09-24
@@ -250,56 +279,54 @@ Summary: AI-driven campus electric transportation optimization system, achieving
 ......
 ```
 
-Carefully check the content accuracy, format completeness, and language style of the brief. If parts are found that do not meet expectations, return to the prompt or plugin configuration stage for detailed adjustments. For example, if the content is not concise enough, modify the summarization requirements in the prompt; if data acquisition is inaccurate, check plugin configuration parameters.
+Carefully check the accuracy of the briefing content, the completeness of the formatting, and the language style. If any part does not meet expectations, return to the prompt or plugin configuration stage for detailed adjustments. For example, if the content is not concise enough, you can modify the summarization requirements in the prompt; if the data acquisition is inaccurate, you need to check the plugin configuration parameters.
 
-Multi-Channel Publishing: Coze provides the ability to publish agents to multiple mainstream application platforms (such as WeChat, Doubao, Feishu, etc.) with one click, greatly expanding the application scenarios of agents, as shown in Figure 5.10.
+Multi-channel publishing: Coze provides the ability to publish an agent to multiple mainstream application platforms (such as WeChat, Doubao, Feishu, etc.) with one click, greatly expanding the application scenarios of the agent, as shown in Figure 5.13.
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-10.png" alt="Image description" width="90%"/>
-  <p>Figure 5.10 Diverse Publishing Channels of Coze Platform</p>
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-13.png" alt="Multiple publishing channels on the Coze platform" width="60%"/> 
+  <p>Figure 5.13 Multiple publishing channels on the Coze platform</p> 
 </div>
 
-After the agent is published, we can see the AI agent we created in the Coze store, and it can also be integrated into AI applications to provide services to users, as shown in Figures 5.11 and 5.12. Here is also the [Daily AI News Agent Experience Link](https://www.coze.cn/store/agent/7506052197071962153?bot_id=true&bid=6hkt3je8o2g16)
+After the agent is published, we can see the AI agent we created in the Coze Store. It can also be integrated into AI applications to provide services to users, as shown in Figures 5.14 and 5.15. Here is also the [Daily AI News Agent experience link](https://www.coze.cn/store/agent/7506052197071962153?bot_id=true&bid=6hkt3je8o2g16)
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-11.png" alt="Image description" width="90%"/>
-  <p>Figure 5.11 AI Agent - Daily AI News</p>
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-14.png" alt="AI Agent-Daily AI News" width="90%"/> 
+  <p>Figure 5.14 AI Agent-Daily AI News</p> 
 </div>
 
-Furthermore, we can click this [experience link](https://www.coze.cn/store/project/7458678213078777893?from=store_search_suggestion&bid=6gu3cmr7k5g1i) to view Daily AI News in the AI application.
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-12.png" alt="Image description" width="90%"/>
-  <p>Figure 5.12 Daily AI News in AI Application</p>
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-15.png" alt="Daily AI News in an AI application" width="90%"/> 
+  <p>Figure 5.15 Daily AI News in an AI application</p> 
 </div>
-**Publishing Configuration:** If you want to publish your own agent, you also need to configure an appropriate name, avatar, and welcome message for the agent before publishing to provide a more friendly user experience, as shown in Figures 5.13 and 5.14.
+<strong>Publishing configuration：</strong>If you want to publish your own agent, you also need to configure an appropriate name, avatar, and welcome message for the agent before publishing, in order to provide a more user-friendly experience, as shown in Figures 5.16 and 5.17.
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-13.png" alt="Image description" width="90%"/>
-  <p>Figure 5.13 Configure Basic Information for Agent</p>
-</div>
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-14.png" alt="Image description" width="90%"/>
-  <p>Figure 5.14 Configure Opening Remarks and Preset Questions for Agent</p>
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-16.png" alt="Configure basic information for the agent" width="50%"/> 
+  <p>Figure 5.16 Configure basic information for the agent</p> 
 </div>
 
+<div align="center"> 
+  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/5-figures/coze-17.png" alt="Configure an opening message and preset questions for the agent" width="50%"/> 
+  <p>Figure 5.17 Configure an opening message and preset questions for the agent</p> 
+</div>
+### 5.2.3 Analysis of Coze’s Advantages and Limitations
 
-### 5.2.3 Analysis of Coze's Advantages and Limitations
+<strong>Advantages:</strong>
 
-**Advantages:**
+* <strong>Powerful plugin ecosystem:</strong> A core advantage of the Coze platform is its rich plugin library, which allows agents to easily connect to external services and data sources, thereby enabling a high degree of functional extensibility.
+* <strong>Intuitive visual orchestration:</strong> The platform provides a low-barrier visual workflow orchestration interface. Users can build complex workflows through “drag-and-drop” operations without requiring deep programming knowledge, greatly reducing development difficulty.
+* <strong>Flexible prompt control:</strong> Through precise role settings and prompt writing, users can exercise fine-grained control over agent behavior and content generation, enabling highly customized outputs. The platform also supports prompt management and templates, which greatly facilitates agent development for developers.
+* <strong>Convenient multi-platform deployment:</strong> The same agent can be published to different application platforms, enabling seamless cross-platform integration and use. Coze is also continuously integrating new platforms into its ecosystem, and more and more mobile phone manufacturers and hardware vendors are gradually supporting the publication of Coze agents.
 
-  * **Powerful Plugin Ecosystem:** The core advantage of the Coze platform lies in its rich plugin library, which enables agents to easily access external services and data sources, achieving high extensibility of functions.
-  * **Intuitive Visual Orchestration:** The platform provides a low-threshold visual workflow orchestration interface. Users can build complex workflows through "drag and drop" without deep programming knowledge, greatly reducing development difficulty.
-  * **Flexible Prompt Control:** Through precise role setting and prompt writing, users can perform fine-grained control over agent behavior and content generation, achieving highly customized output. It also supports prompt management and templates, greatly facilitating developers in agent development.
-  * **Convenient Multi-Platform Deployment:** Supports publishing the same agent to different application platforms, achieving seamless cross-platform integration and application. Moreover, Coze is continuously integrating new platforms into its ecosystem, with more and more mobile phone manufacturers and hardware manufacturers gradually supporting the publishing of Coze agents.
+<strong>Limitations:</strong>
 
-**Limitations:**
-
-  * **Does Not Support MCP:** I think this is the most fatal. Although Coze's plugin market is extremely rich and attractive, not supporting MCP may become a shackle limiting its development. If opened up, it will be another killer feature.
-  * **High Complexity of Some Plugin Configurations:** For plugins that require API Keys or other advanced parameters, users may need some technical background to complete correct configuration. Complex workflow orchestration is also not something that can be mastered with zero foundation; it requires some JavaScript or Python basics.
-  * **Unable to directly import JSON files:** Previously, the app didn't have an export/import function, but the paid version now does. However, the exported/imported file isn't a JSON file like Dify or N8n; it's a ZIP file. This means you can only export from the app and then import the ZIP file. However, you can use a workaround: in the layout interface, press Ctrl+A to select all, then Ctrl+C to copy the layout, and then paste it into another blank workflow or other workflows.
-
+* <strong>No support for MCP:</strong> I think this is the most critical limitation. Although Coze’s plugin marketplace is extremely rich and highly attractive, the lack of MCP support may become a constraint on its development. If this restriction were lifted, it could become another killer feature.
+* <strong>High configuration complexity for some plugins:</strong> For plugins that require an API Key or other advanced parameters, users may need a certain technical background to configure them correctly. Complex workflow orchestration is also not something that can be mastered with absolutely no foundation; some basic knowledge of js or python is required.
+* <strong>Cannot directly import orchestration json files:</strong> Coze previously did not provide export and import functionality. The paid version now supports export and import, but what is exported and imported is not a json file like in dify or n8n; instead, it is a zip file. In other words, you can only export this zip from Coze and then import it back into Coze. As a workaround, you can also copy the orchestration: in the orchestration interface, press ctrl+a to select everything, then ctrl+c to copy the orchestration, and paste it into another blank workflow or another workflow.
 
 ## 5.3 Platform Two: Dify
+
 ### 5.3.1 Introduction to Dify and Its Ecosystem
 
 Dify is an open-source large language model (LLM) application development platform that integrates the concepts of Backend as a Service (BaaS) and LLMOps, providing full-process support from prototype design to production deployment, as shown in Figure 5.15. It adopts a layered modular architecture, divided into data layer, development layer, orchestration layer, and foundation layer, with each layer decoupled for easy expansion.

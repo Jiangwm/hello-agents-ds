@@ -1,0 +1,10 @@
+# ===== 核心依赖（装这几个就能跑）=====
+openai>=1.30.0
+python-dotenv>=1.0.0
+scikit-learn>=1.3.0
+numpy>=1.24.0
+
+# ===== 可选：语义向量检索 =====
+# 只有用 `--mode vector` 时才需要。它会额外下载约 400MB 的中文向量模型，
+# 第一次跑建议先用默认的 tfidf 模式，跑通流程再说。
+# sentence-transformers>=3.0.0

@@ -1,0 +1,24 @@
+# 密钥文件，绝对不能上传
+.env
+.env.local
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 运行时产物
+# 说明：outputs/评估报告.json 故意不忽略 —— 它是评估证据，跟着仓库一起提交
+outputs/长期笔记.md
+outputs/_*.txt
+*.log
+
+# 编辑器
+.idea/
+.vscode/
+.DS_Store
