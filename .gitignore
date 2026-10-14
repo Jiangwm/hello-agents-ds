@@ -161,7 +161,7 @@ cython_debug/
 .DS_Store
 .obsidian
 
-# 忽略各种文件夹下codex AGENRS.md
+# 忽略各种文件夹下codex AGENRS.md 等
 .AGENTS/
 .omo/
 AGENTS.md
@@ -172,3 +172,4 @@ test_*.py
 .vscode/
 .codex-docx-work/
 memory/
+memory_data/

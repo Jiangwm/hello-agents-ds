@@ -274,8 +274,11 @@ def create_gradio_ui():
 
     def chat(message: str, history: List) -> Tuple[str, List]:
         """聊天功能"""
+        history = list(history or [])
         if assistant_state["assistant"] is None:
-            return "", history + [[message, "❌ 请先初始化助手并加载文档"]]
+            history.append({"role": "user", "content": message})
+            history.append({"role": "assistant", "content": "❌ 请先初始化助手并加载文档"})
+            return "", history
 
         if not message.strip():
             return "", history
@@ -290,7 +293,8 @@ def create_gradio_ui():
             response = assistant_state["assistant"].ask(message)
             response = f"💡 **回答**\n\n{response}"
 
-        history.append([message, response])
+        history.append({"role": "user", "content": message})
+        history.append({"role": "assistant", "content": response})
         return "", history
 
     def add_note_ui(note_content: str, concept: str) -> str:
@@ -335,7 +339,7 @@ def create_gradio_ui():
         return result
 
     # 创建Gradio界面
-    with gr.Blocks(title="智能文档问答助手", theme=gr.themes.Soft()) as demo:
+    with gr.Blocks(title="智能文档问答助手") as demo:
         gr.Markdown("""
         # 📚 智能文档问答助手
 
@@ -374,7 +378,6 @@ def create_gradio_ui():
             chatbot = gr.Chatbot(
                 label="对话历史",
                 height=400,
-                bubble_full_width=False
             )
             with gr.Row():
                 msg_input = gr.Textbox(
@@ -439,7 +442,8 @@ def main():
         server_name="0.0.0.0",
         server_port=7860,
         share=False,
-        show_error=True
+        show_error=True,
+        theme=gr.themes.Soft(),
     )
 
 
