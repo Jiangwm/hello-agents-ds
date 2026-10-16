@@ -45,7 +45,7 @@ class AgentIntegrationDemo:
 
         # 创建Agent
         print("\n3. 创建Agent...")
-        self.llm = HelloAgentsLLM()
+        self.llm = HelloAgentsLLM(provider="custom")
         self.agent = SimpleAgent(
             name="智能学习助手",
             llm=self.llm,

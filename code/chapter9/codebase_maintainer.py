@@ -17,9 +17,10 @@ import json
 from hello_agents import HelloAgentsLLM
 from hello_agents.agents import FunctionCallAgent
 from hello_agents.context import ContextBuilder, ContextConfig, ContextPacket
-from hello_agents.tools import MemoryTool, NoteTool, TerminalTool
+from hello_agents.tools import MemoryTool, NoteTool
 from hello_agents.tools.registry import ToolRegistry
 from hello_agents.core.message import Message
+from safe_terminal import CodebaseTerminalTool
 
 
 class CodebaseMaintainer:
@@ -45,7 +46,7 @@ class CodebaseMaintainer:
         self.session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
         # 初始化 LLM
-        self.llm = llm or HelloAgentsLLM()
+        self.llm = llm or HelloAgentsLLM(provider="custom")
 
         # 初始化工具
         self.memory_tool = MemoryTool(
@@ -53,7 +54,7 @@ class CodebaseMaintainer:
             memory_types=["working"]
         )
         self.note_tool = NoteTool(workspace=f"./{project_name}_notes")
-        self.terminal_tool = TerminalTool(workspace=codebase_path, timeout=60)
+        self.terminal_tool = CodebaseTerminalTool(workspace=codebase_path, timeout=60)
 
         # 初始化上下文构建器
         self.context_builder = ContextBuilder(
@@ -447,7 +448,7 @@ def main():
     maintainer = CodebaseMaintainer(
         project_name="my_flask_app",
         codebase_path="./my_flask_app",
-        llm=HelloAgentsLLM()
+        llm=HelloAgentsLLM(provider="custom")
     )
 
     # 探索代码库（Agent 自主决定如何探索）

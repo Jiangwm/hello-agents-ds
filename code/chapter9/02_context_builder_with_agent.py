@@ -50,7 +50,7 @@ class ContextAwareAgent(SimpleAgent):
             {"role": "system", "content": optimized_context},
             {"role": "user", "content": user_input}
         ]
-        response = self.llm.invoke(messages).content
+        response = self.llm.invoke(messages)
 
         # 3. 更新对话历史
         self.conversation_history.append(
@@ -78,7 +78,7 @@ def main():
 
     # 配置 LLM
     from hello_agents.core.llm import HelloAgentsLLM
-    llm = HelloAgentsLLM()
+    llm = HelloAgentsLLM(provider="custom")
 
     # 使用示例
     agent = ContextAwareAgent(

@@ -173,3 +173,8 @@ test_*.py
 .codex-docx-work/
 memory/
 memory_data/
+project_notes/
+demo_codebase_notes/
+data_pipeline_refactoring_notes/
+my_flask_app_notes/
+my_flask_app/

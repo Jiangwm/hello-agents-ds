@@ -8,9 +8,8 @@ TerminalTool 使用示例
 4. 代码库分析
 """
 
-import os
 from pathlib import Path
-from hello_agents.tools import TerminalTool
+from safe_terminal import CodebaseTerminalTool
 
 # 获取脚本所在目录
 SCRIPT_DIR = Path(__file__).parent.absolute()
@@ -22,7 +21,7 @@ def demo_exploratory_navigation():
     print("场景1: 探索式导航")
     print("=" * 80 + "\n")
 
-    terminal = TerminalTool(workspace=str(SCRIPT_DIR))
+    terminal = CodebaseTerminalTool(workspace=str(SCRIPT_DIR))
 
     # 第一步:查看当前目录
     print("1. 查看当前目录:")
@@ -51,7 +50,7 @@ def demo_data_file_analysis():
     print("场景2: 数据文件分析")
     print("=" * 80 + "\n")
 
-    terminal = TerminalTool(workspace=str(SCRIPT_DIR / "data"))
+    terminal = CodebaseTerminalTool(workspace=str(SCRIPT_DIR / "data"))
 
     # 查看 CSV 文件的前几行
     print("1. 查看 CSV 文件前5行:")
@@ -75,7 +74,7 @@ def demo_log_analysis():
     print("场景3: 日志文件分析")
     print("=" * 80 + "\n")
 
-    terminal = TerminalTool(workspace=str(SCRIPT_DIR / "logs"))
+    terminal = CodebaseTerminalTool(workspace=str(SCRIPT_DIR / "logs"))
 
     # 查看最新的错误日志
     print("1. 查看最新的错误日志:")
@@ -99,7 +98,7 @@ def demo_codebase_analysis():
     print("场景4: 代码库分析")
     print("=" * 80 + "\n")
 
-    terminal = TerminalTool(workspace=str(SCRIPT_DIR / "codebase"))
+    terminal = CodebaseTerminalTool(workspace=str(SCRIPT_DIR / "codebase"))
 
     # 统计代码行数
     print("1. 统计代码行数:")
@@ -123,7 +122,7 @@ def demo_security_features():
     print("安全特性演示")
     print("=" * 80 + "\n")
 
-    terminal = TerminalTool(workspace=str(SCRIPT_DIR / "project"))
+    terminal = CodebaseTerminalTool(workspace=str(SCRIPT_DIR / "project"))
 
     # 尝试执行不允许的命令
     print("1. 尝试执行危险命令 (rm):")

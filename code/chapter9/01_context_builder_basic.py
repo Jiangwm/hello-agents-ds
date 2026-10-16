@@ -89,12 +89,12 @@ def main():
     ]
 
     from hello_agents.core.llm import HelloAgentsLLM
-    llm = HelloAgentsLLM()
+    llm = HelloAgentsLLM(provider="custom")
     # 注意: 实际使用时需要配置 LLM
     response = llm.invoke(messages)
     print(f"LLM 回答: {response}")
 
-    print("✅ ContextBuilder 演示完成!")
+    print("[OK] ContextBuilder 演示完成!")
     print("\n提示: ContextBuilder 返回的是结构化的上下文字符串,")
     print("      可以直接作为 system message 传给 LLM。")
 
