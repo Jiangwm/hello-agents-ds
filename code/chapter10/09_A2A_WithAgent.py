@@ -131,7 +131,7 @@ print("🤖 创建接待员 SimpleAgent")
 print("="*60)
 
 # 初始化 LLM
-llm = HelloAgentsLLM()
+llm = HelloAgentsLLM(provider="custom")
 
 # 创建接待员 Agent
 receptionist = SimpleAgent(

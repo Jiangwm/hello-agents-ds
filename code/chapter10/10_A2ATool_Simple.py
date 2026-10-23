@@ -8,7 +8,7 @@ from hello_agents.tools import A2ATool
 from dotenv import load_dotenv
 
 load_dotenv()
-llm = HelloAgentsLLM()
+llm = HelloAgentsLLM(provider="custom")
 
 # 假设已经有一个研究员Agent服务运行在 http://localhost:5000
 

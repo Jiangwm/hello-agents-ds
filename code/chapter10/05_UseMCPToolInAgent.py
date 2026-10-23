@@ -5,7 +5,7 @@ print("=" * 70)
 print("方式1：使用内置演示服务器")
 print("=" * 70)
 
-agent = SimpleAgent(name="助手", llm=HelloAgentsLLM())
+agent = SimpleAgent(name="助手", llm=HelloAgentsLLM(provider="custom"))
 
 # 无需任何配置，自动使用内置演示服务器
 # 内置服务器提供：add, subtract, multiply, divide, greet, get_system_info

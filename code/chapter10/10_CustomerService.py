@@ -11,7 +11,7 @@ import time
 from dotenv import load_dotenv
 
 load_dotenv()
-llm = HelloAgentsLLM()
+llm = HelloAgentsLLM(provider="custom")
 
 # 1. 创建技术专家Agent服务
 tech_expert = A2AServer(

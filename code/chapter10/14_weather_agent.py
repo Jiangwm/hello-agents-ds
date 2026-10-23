@@ -10,7 +10,7 @@ load_dotenv()
 
 def create_weather_assistant():
     """创建天气助手"""
-    llm = HelloAgentsLLM()
+    llm = HelloAgentsLLM(provider="custom")
 
     assistant = SimpleAgent(
         name="天气助手",

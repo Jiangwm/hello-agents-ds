@@ -10,7 +10,7 @@ from hello_agents.tools import MCPTool
 from dotenv import load_dotenv
 
 # 加载.env文件中的环境变量
-load_dotenv(dotenv_path="../HelloAgents/.env")
+# load_dotenv(dotenv_path="../HelloAgents/.env")
 
 print("="*70)
 print("多Agent协作的智能文档助手")
@@ -23,7 +23,7 @@ print("\n【步骤1】创建GitHub搜索专家...")
 
 github_searcher = SimpleAgent(
     name="GitHub搜索专家",
-    llm=HelloAgentsLLM(),
+    llm=HelloAgentsLLM(provider="custom"),
     system_prompt="""你是一个GitHub搜索专家。
 你的任务是搜索GitHub仓库并返回结果。
 请返回清晰、结构化的搜索结果，包括：
@@ -38,6 +38,9 @@ github_tool = MCPTool(
     name="gh",
     server_command=["npx", "-y", "@modelcontextprotocol/server-github"]
 )
+# hello-agents 0.2.x 的 auto_expand 没有写入 Tool.expandable，
+# 不赋值时注册表只登记一个名为 gh 的工具，Agent 找不到 gh_search_repositories。
+github_tool.expandable = True
 github_searcher.add_tool(github_tool)
 
 # ============================================================
@@ -47,7 +50,7 @@ print("\n【步骤2】创建文档生成专家...")
 
 document_writer = SimpleAgent(
     name="文档生成专家",
-    llm=HelloAgentsLLM(),
+    llm=HelloAgentsLLM(provider="custom"),
     system_prompt="""你是一个文档生成专家。
 你的任务是根据提供的信息生成结构化的Markdown报告。
 
@@ -65,6 +68,7 @@ fs_tool = MCPTool(
     name="fs",
     server_command=["npx", "-y", "@modelcontextprotocol/server-filesystem", "."]
 )
+fs_tool.expandable = True
 document_writer.add_tool(fs_tool)
 
 # ============================================================
